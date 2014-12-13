@@ -11,11 +11,13 @@ import (
 		if err != nil {
 			panic(err)
 		}
-		out, err := session.CombinedOutput("ls")
+
+		out, err := sendCommand(session, "ls")
 		if err != nil {
 			panic(err)
 		}
 		fmt.Println(string(out))
+
 		client.Close()
 	}
 
@@ -39,4 +41,14 @@ import (
 		}
 
 		return client, session, nil
+	}
+
+	func sendCommand(session *ssh.Session, command string) (string, error) {
+
+		out, err := session.CombinedOutput("ls")
+		if err != nil {
+			return "", err
+		}
+
+		return string(out), nil
 	}
