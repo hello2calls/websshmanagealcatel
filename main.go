@@ -7,23 +7,17 @@ import (
 
 func main() {
 
-	client, session, err := connectToHost("test", "192.168.200.10:22", "test")
-	if err != nil {
-		panic(err)
-	}
+	client, session := connectToHost("test", "192.168.200.10:22", "test")
 
-	out, err := sendCommand(session, "ls")
-	if err != nil {
-		panic(err)
-	}
+	out := sendCommand(session, "lsqdf")
 	fmt.Println(string(out))
 
-	client.Close()
-	
+	closeSession(client)
+
 }
 
 
-func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session, error) {
+func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session) {
 
 	sshConfig := &ssh.ClientConfig{
 		User: user,
@@ -32,27 +26,31 @@ func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session, erro
 
 	client, err := ssh.Dial("tcp", host, sshConfig)
 	if err != nil {
-		return nil, nil, err
+		panic(err)
 	}
 
 	session, err := client.NewSession()
 	if err != nil {
 		client.Close()
-		return nil, nil, err
+		panic(err)
 	}
 
-	return client, session, nil
+	return client, session
 
 }
 
 
-func sendCommand(session *ssh.Session, command string) (string, error) {
+func sendCommand(session *ssh.Session, command string) (string) {
 
 	out, err := session.CombinedOutput(command)
-	if err != nil {
-		return "", err
-	}
+	if err != nil {}
 
-	return string(out), nil
+	return string(out)
+
+}
+
+func closeSession(client *ssh.Client) {
+
+	client.Close()
 
 }
