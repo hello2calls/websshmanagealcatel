@@ -45,7 +45,7 @@ import (
 
 	func sendCommand(session *ssh.Session, command string) (string, error) {
 
-		out, err := session.CombinedOutput("ls")
+		out, err := session.CombinedOutput(command)
 		if err != nil {
 			return "", err
 		}
