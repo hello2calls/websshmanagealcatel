@@ -7,7 +7,7 @@ import (
 
 	func main() {
 
-		client, session, err := connectToHost()
+		client, session, err := connectToHost("test", "192.168.200.10:22", "test")
 		if err != nil {
 			panic(err)
 		}
@@ -20,14 +20,14 @@ import (
 	}
 
 
-	func connectToHost() (*ssh.Client, *ssh.Session, error) {
+	func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session, error) {
 
 		sshConfig := &ssh.ClientConfig{
-			User: "test",
-			Auth: []ssh.AuthMethod{ssh.Password("test")},
+			User: user,
+			Auth: []ssh.AuthMethod{ssh.Password(password)},
 		}
 
-		client, err := ssh.Dial("tcp", "192.168.200.10:22", sshConfig)
+		client, err := ssh.Dial("tcp", host, sshConfig)
 		if err != nil {
 			return nil, nil, err
 		}
