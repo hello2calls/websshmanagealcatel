@@ -3,52 +3,56 @@ package main
 import (
 	"fmt"
 	"golang.org/x/crypto/ssh"
-	)
+)
 
-	func main() {
+func main() {
 
-		client, session, err := connectToHost("test", "192.168.200.10:22", "test")
-		if err != nil {
-			panic(err)
-		}
+	client, session, err := connectToHost("test", "192.168.200.10:22", "test")
+	if err != nil {
+		panic(err)
+	}
 
-		out, err := sendCommand(session, "ls")
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println(string(out))
+	out, err := sendCommand(session, "ls")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(out))
 
+	client.Close()
+	
+}
+
+
+func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session, error) {
+
+	sshConfig := &ssh.ClientConfig{
+		User: user,
+		Auth: []ssh.AuthMethod{ssh.Password(password)},
+	}
+
+	client, err := ssh.Dial("tcp", host, sshConfig)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	session, err := client.NewSession()
+	if err != nil {
 		client.Close()
+		return nil, nil, err
 	}
 
+	return client, session, nil
 
-	func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session, error) {
+}
 
-		sshConfig := &ssh.ClientConfig{
-			User: user,
-			Auth: []ssh.AuthMethod{ssh.Password(password)},
-		}
 
-		client, err := ssh.Dial("tcp", host, sshConfig)
-		if err != nil {
-			return nil, nil, err
-		}
+func sendCommand(session *ssh.Session, command string) (string, error) {
 
-		session, err := client.NewSession()
-		if err != nil {
-			client.Close()
-			return nil, nil, err
-		}
-
-		return client, session, nil
+	out, err := session.CombinedOutput(command)
+	if err != nil {
+		return "", err
 	}
 
-	func sendCommand(session *ssh.Session, command string) (string, error) {
+	return string(out), nil
 
-		out, err := session.CombinedOutput(command)
-		if err != nil {
-			return "", err
-		}
-
-		return string(out), nil
-	}
+}
