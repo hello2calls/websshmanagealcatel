@@ -15,8 +15,8 @@ type Connection struct {
 }
 
 // Declare Slices
-var client []*ssh.CLient
-var session []*ssh.Session
+//var client []*ssh.CLient
+//var session []*ssh.Session
 
 func main() {
 
@@ -50,14 +50,14 @@ func callFunc(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		client, session := connectToHost(c.User, c.Host, c.Password)
-		w.Write([]byte("client"))
+		//client, session := connectToHost(c.User, c.Host, c.Password)
+		w.Write([]byte("POST /API/session"))
 	}
 
 	// If DELETE /API/session (API)
 	if r.Method == "DELETE" && r.URL.Path == "/API/session" {
 		fmt.Println("POST /API/session")
-		body, _ := ioutil.ReadAll(r.Body)
+		//body, _ := ioutil.ReadAll(r.Body)
 
 		//closeSession(body)
 		w.Write([]byte("DELETE /API/session"))
