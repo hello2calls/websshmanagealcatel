@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"io/ioutil"
 	"encoding/json"
+	"time"
+	"strconv"
 )
 
 type Connection struct {
@@ -14,11 +16,22 @@ type Connection struct {
 	Password	string
 }
 
-// Declare Slices
-//var client []*ssh.CLient
-//var session []*ssh.Session
+type SessionID struct {
+	ID	int64
+}
+
+type Command struct {
+	SessionID int64
+	Command	string
+}
+
+// Declare Maps
+var clientList = make(map[int64]*ssh.Client)
+var sessionList =  make(map[int64]*ssh.Session)
 
 func main() {
+
+	fmt.Println("WebServer Listen on all interfaces, port 8080")
 
 	http.HandleFunc("/", callFunc)
 	http.ListenAndServe(":8080", nil)
@@ -27,8 +40,6 @@ func main() {
 
 	//out := sendCommand(session, "lsqdf")
 	//fmt.Println(string(out))
-
-	//closeSession(client)
 
 }
 
@@ -43,30 +54,36 @@ func callFunc(w http.ResponseWriter, r *http.Request) {
 
 	// If POST /API/session (API)
 	if r.Method == "POST" && r.URL.Path == "/API/session" {
-		fmt.Println("POST /API/session")
 		body, _ := ioutil.ReadAll(r.Body)
 		var c Connection
-		err := json.Unmarshal(body, &c)
-		if err != nil {
-			panic(err)
-		}
-		//client, session := connectToHost(c.User, c.Host, c.Password)
-		w.Write([]byte("POST /API/session"))
+		json.Unmarshal(body, &c)
+		client, session := connectToHost(c.User, c.Host, c.Password)
+		timeNow := time.Now().UnixNano()
+		clientList[timeNow] = client
+		sessionList[timeNow] = session
+		timeString := strconv.FormatInt(timeNow, 10)
+		w.Write([]byte("{ID : " + timeString + "}"))
 	}
 
 	// If DELETE /API/session (API)
 	if r.Method == "DELETE" && r.URL.Path == "/API/session" {
-		fmt.Println("POST /API/session")
-		//body, _ := ioutil.ReadAll(r.Body)
-
-		//closeSession(body)
-		w.Write([]byte("DELETE /API/session"))
+		body, _ := ioutil.ReadAll(r.Body)
+		var s SessionID
+		json.Unmarshal(body, &s)
+		//closeSession
+		closeSession(clientList[s.ID])
+		delete(clientList, s.ID)
+		w.Write([]byte("{sessionRemoved : true}"))
 	}
 
 	// If POST /API/command (API)
 	if r.Method == "POST" && r.URL.Path == "/API/command" {
-		fmt.Println("POST /API/command")
-		w.Write([]byte("POST /API/command"))
+		body, _ := ioutil.ReadAll(r.Body)
+		var c Command
+		json.Unmarshal(body, &c)
+		session := sessionList[c.SessionID]
+		out := sendCommand(session, c.Command)
+		w.Write([]byte("{commandOut : " + out + "}"))
 	}
 
 }
