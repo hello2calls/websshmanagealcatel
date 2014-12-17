@@ -35,12 +35,7 @@ func main() {
 
 	http.HandleFunc("/", callFunc)
 	http.ListenAndServe(":8080", nil)
-
-	//client, session := connectToHost("test", "192.168.200.10:22", "test")
-
-	//out := sendCommand(session, "lsqdf")
-	//fmt.Println(string(out))
-
+	
 }
 
 
