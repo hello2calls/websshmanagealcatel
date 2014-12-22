@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"time"
 	"strconv"
+	"io"
 )
 
 type Connection struct {
@@ -29,26 +30,41 @@ type Command struct {
 var clientList = make(map[int64]*ssh.Client)
 var sessionList =  make(map[int64]*ssh.Session)
 
+
 func main() {
 
 	fmt.Println("WebServer Listen on all interfaces, port 8080")
 
-	http.HandleFunc("/", callFunc)
+	http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/API/session", sessionHandler)
+	http.HandleFunc("/API/command", commandHandler)
 	http.ListenAndServe(":8080", nil)
-	
+
 }
 
 
-func callFunc(w http.ResponseWriter, r *http.Request) {
-
-	// If GET / (Website)
-	if r.Method == "GET" && r.URL.Path == "/" {
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+		case "GET":
 		fmt.Println("GET /")
 		w.Write([]byte("GET /"))
+		case "POST":
+		w.Write([]byte("Not Implemented"))
+		case "PUT":
+		w.Write([]byte("Not Implemented"))
+		case "DELETE":
+		w.Write([]byte("Not Implemented"))
 	}
+}
 
-	// If POST /API/session (API)
-	if r.Method == "POST" && r.URL.Path == "/API/session" {
+
+func sessionHandler(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+
+		case "GET":
+		fmt.Println("GET /")
+		w.Write([]byte("GET /"))
+		case "POST":
 		body, _ := ioutil.ReadAll(r.Body)
 		var c Connection
 		json.Unmarshal(body, &c)
@@ -58,10 +74,9 @@ func callFunc(w http.ResponseWriter, r *http.Request) {
 		sessionList[timeNow] = session
 		timeString := strconv.FormatInt(timeNow, 10)
 		w.Write([]byte("{ID : " + timeString + "}"))
-	}
-
-	// If DELETE /API/session (API)
-	if r.Method == "DELETE" && r.URL.Path == "/API/session" {
+		case "PUT":
+		w.Write([]byte("Not Implemented"))
+		case "DELETE":
 		body, _ := ioutil.ReadAll(r.Body)
 		var s SessionID
 		json.Unmarshal(body, &s)
@@ -70,7 +85,10 @@ func callFunc(w http.ResponseWriter, r *http.Request) {
 		delete(clientList, s.ID)
 		w.Write([]byte("{sessionRemoved : true}"))
 	}
+}
 
+
+func commandHandler(w http.ResponseWriter, r *http.Request) {
 	// If POST /API/command (API)
 	if r.Method == "POST" && r.URL.Path == "/API/command" {
 		body, _ := ioutil.ReadAll(r.Body)
@@ -110,6 +128,7 @@ func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session) {
 	return client, session
 
 }
+
 
 // SendCommand to Host
 func sendCommand(session *ssh.Session, command string) (string) {
