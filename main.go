@@ -29,6 +29,9 @@ type Command struct {
 // Declare Maps
 var clientList = make(map[int64]*ssh.Client)
 var sessionList =  make(map[int64]*ssh.Session)
+var sessionIn =  make(map[int64]io.WriteCloser)
+var sessionOut =  make(map[int64]io.Reader)
+var sessionErr =  make(map[int64]io.Reader)
 
 
 func main() {
@@ -68,8 +71,8 @@ func sessionHandler(w http.ResponseWriter, r *http.Request) {
 		body, _ := ioutil.ReadAll(r.Body)
 		var c Connection
 		json.Unmarshal(body, &c)
-		client, session := connectToHost(c.User, c.Host, c.Password)
 		timeNow := time.Now().UnixNano()
+		client, session := connectToHost(c.User, c.Host, c.Password, timeNow)
 		clientList[timeNow] = client
 		sessionList[timeNow] = session
 		timeString := strconv.FormatInt(timeNow, 10)
@@ -95,15 +98,14 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 		var c Command
 		json.Unmarshal(body, &c)
 		session := sessionList[c.SessionID]
-		out := sendCommand(session, c.Command)
+		out := sendCommand(session, c.Command, c.SessionID)
 		w.Write([]byte("{commandOut : " + out + "}"))
 	}
-
 }
 
 
 // Connection to Host
-func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session) {
+func connectToHost(user, host, password string, timeNow int64) (*ssh.Client, *ssh.Session) {
 
 	// Create sshConfig variable
 	sshConfig := &ssh.ClientConfig{
@@ -124,6 +126,12 @@ func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session) {
 		panic(err)
 	}
 
+	sessionOut[timeNow], _ = session.StdoutPipe()
+	sessionIn[timeNow], _ = session.StdinPipe()
+	session.Shell()
+	buf := make([]byte, 10000)
+	sessionOut[timeNow].Read(buf)
+
 	// Return client and session
 	return client, session
 
@@ -131,14 +139,17 @@ func connectToHost(user, host, password string) (*ssh.Client, *ssh.Session) {
 
 
 // SendCommand to Host
-func sendCommand(session *ssh.Session, command string) (string) {
+func sendCommand(session *ssh.Session, command string, sessionID int64) (string) {
+
+	buf := make([]byte, 10000)
 
 	// Send command
-	out, err := session.CombinedOutput(command)
-	if err != nil {}
+	sessionIn[sessionID].Write([]byte(command + "\n"))
+	n, _ := sessionOut[sessionID].Read(buf)
+	loadStr := string(buf[:n])
 
 	// Return command result
-	return string(out)
+	return string(loadStr)
 
 }
 
