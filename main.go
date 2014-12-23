@@ -49,14 +49,14 @@ func main() {
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 		case "GET":
-		fmt.Println("GET /")
-		w.Write([]byte("GET /"))
+			fmt.Println("GET /")
+			w.Write([]byte("GET /"))
 		case "POST":
-		w.Write([]byte("Not Implemented"))
+			w.Write([]byte("Not Implemented"))
 		case "PUT":
-		w.Write([]byte("Not Implemented"))
+			w.Write([]byte("Not Implemented"))
 		case "DELETE":
-		w.Write([]byte("Not Implemented"))
+			w.Write([]byte("Not Implemented"))
 	}
 }
 
@@ -65,28 +65,28 @@ func sessionHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 
 		case "GET":
-		fmt.Println("GET /")
-		w.Write([]byte("GET /"))
+			fmt.Println("GET /")
+			w.Write([]byte("GET /"))
 		case "POST":
-		body, _ := ioutil.ReadAll(r.Body)
-		var c Connection
-		json.Unmarshal(body, &c)
-		timeNow := time.Now().UnixNano()
-		client, session := connectToHost(c.User, c.Host, c.Password, timeNow)
-		clientList[timeNow] = client
-		sessionList[timeNow] = session
-		timeString := strconv.FormatInt(timeNow, 10)
-		w.Write([]byte("{ID : " + timeString + "}"))
+			body, _ := ioutil.ReadAll(r.Body)
+			var c Connection
+			json.Unmarshal(body, &c)
+			timeNow := time.Now().UnixNano()
+			client, session := connectToHost(c.User, c.Host, c.Password, timeNow)
+			clientList[timeNow] = client
+			sessionList[timeNow] = session
+			timeString := strconv.FormatInt(timeNow, 10)
+			w.Write([]byte("{ID : " + timeString + "}"))
 		case "PUT":
-		w.Write([]byte("Not Implemented"))
+			w.Write([]byte("Not Implemented"))
 		case "DELETE":
-		body, _ := ioutil.ReadAll(r.Body)
-		var s SessionID
-		json.Unmarshal(body, &s)
-		//closeSession
-		closeSession(clientList[s.ID])
-		delete(clientList, s.ID)
-		w.Write([]byte("{sessionRemoved : true}"))
+			body, _ := ioutil.ReadAll(r.Body)
+			var s SessionID
+			json.Unmarshal(body, &s)
+			//closeSession
+			closeSession(clientList[s.ID])
+			delete(clientList, s.ID)
+			w.Write([]byte("{sessionRemoved : true}"))
 	}
 }
 
@@ -128,6 +128,7 @@ func connectToHost(user, host, password string, timeNow int64) (*ssh.Client, *ss
 
 	sessionOut[timeNow], _ = session.StdoutPipe()
 	sessionIn[timeNow], _ = session.StdinPipe()
+	sessionErr[timeNow], _ = session.StderrPipe()
 	session.Shell()
 	buf := make([]byte, 10000)
 	sessionOut[timeNow].Read(buf)
@@ -144,12 +145,18 @@ func sendCommand(session *ssh.Session, command string, sessionID int64) (string)
 	buf := make([]byte, 10000)
 
 	// Send command
-	sessionIn[sessionID].Write([]byte(command + "\n"))
-	n, _ := sessionOut[sessionID].Read(buf)
-	loadStr := string(buf[:n])
-
-	// Return command result
-	return string(loadStr)
+	switch command {
+		case "":
+			return string("Command is Empty")
+		case "\n":
+			return string("Command is not defined")
+		default :
+			sessionIn[sessionID].Write([]byte(command + "\n"))
+			n, _ := sessionOut[sessionID].Read(buf)
+			loadStr := string(buf[:n])
+			// Return command result
+			return string(loadStr)
+	}
 
 }
 
