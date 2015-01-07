@@ -1,0 +1,186 @@
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+body {
+    color: #526066;
+    height: 100%
+}
+
+html {
+  height: 100%
+}
+
+h2, h3 {
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+p {
+    line-height: 0em;
+}
+
+
+/*
+ * -- Layout Styles --
+ */
+.l-content {
+    margin: 0 auto;
+}
+
+.l-box {
+    padding: 0.5em 2em;
+}
+
+/*
+ * -- MENU STYLES --
+ * Make the menu have a very faint box-shadow.
+ */
+.pure-menu {
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    height: 5%;
+}
+
+/*
+ * -- TABLE --
+ */
+.content {
+  padding: 2%;
+  height: 81%;
+}
+
+.list {
+  padding: 5%;
+}
+
+.textButtonDSLAM {
+  font-size: 200%;
+}
+
+.textButtonCard {
+  font-size: 150%;
+}
+
+.textButtonPort {
+  font-size: 100%;
+}
+
+.DSLAMList, .CardList, .PortList, .ServiceList {
+  overflow: auto;
+}
+.pure-button {
+  background: rgb(255, 255, 255); /* this is a green */
+}
+
+.fa-close {
+  color : red;
+}
+.fa-exclamation {
+  color : orange;
+}
+
+
+.footer {
+    background: #888;
+    color: #ddd;
+    text-align: center;
+    height: 5%;
+}
+.footer a {
+    color: #ddd;
+}
+
+
+
+
+/*
+ * -- Small --
+ */
+@media (min-width: 567px) {
+
+}
+
+
+/*
+ * -- Medium --
+ */
+@media (min-width: 767px) {
+
+  .imagePort {
+    font-size: 1.5em !important;
+  }
+
+}
+
+
+/*
+ * -- Large --
+ */
+@media (min-width: 1023px) {
+
+  .imagePort {
+    font-size: 2em !important;
+  }
+
+}
+
+
+/*
+ * -- Xlarge --
+ */
+@media (min-width: 1279px) {
+
+}
+
+
+/*
+ * -- Switch On/Off
+ */
+ .onoffswitch {
+   position: relative; width: 80px;
+   -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+   margin: 0.8em 0.1em;
+ }
+ .onoffswitch-checkbox {
+   display: none;
+ }
+ .onoffswitch-label {
+   display: block; overflow: hidden; cursor: pointer;
+   border: 2px solid #999999; border-radius: 15px;
+ }
+ .onoffswitch-inner {
+   display: block; width: 200%; margin-left: -100%;
+   -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+   -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+ }
+ .onoffswitch-inner:before, .onoffswitch-inner:after {
+   display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+   font-size: 17px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+ .onoffswitch-inner:before {
+   content: "ON";
+   padding-left: 12px;
+   background-color: #34A7C1; color: #FFFFFF;
+ }
+ .onoffswitch-inner:after {
+   content: "OFF";
+   padding-right: 12px;
+   background-color: #EEEEEE; color: #999999;
+   text-align: right;
+ }
+ .onoffswitch-switch {
+   display: block; width: 15px; height: 20px; margin: 4.5px;
+   background: #FFFFFF;
+   border: 2px solid #999999; border-radius: 15px;
+   position: absolute; top: 0; bottom: 0; right: 46px;
+   -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+   -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
+ }
+ .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+   margin-left: 0;
+ }
+ .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+   right: 0px;
+ }
