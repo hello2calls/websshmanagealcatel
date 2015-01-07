@@ -6,9 +6,8 @@ import (
 	"net/http"
 	"io/ioutil"
 	"encoding/json"
-	"time"
-	"strconv"
 	"io"
+	"code.google.com/p/go-uuid/uuid"
 )
 
 type Connection struct {
@@ -18,20 +17,20 @@ type Connection struct {
 }
 
 type SessionID struct {
-	ID	int64
+	ID	string
 }
 
 type Command struct {
-	SessionID int64
+	SessionID string
 	Command	string
 }
 
 // Declare Maps
-var clientList = make(map[int64]*ssh.Client)
-var sessionList =  make(map[int64]*ssh.Session)
-var sessionIn =  make(map[int64]io.WriteCloser)
-var sessionOut =  make(map[int64]io.Reader)
-var sessionErr =  make(map[int64]io.Reader)
+var clientList = make(map[string]*ssh.Client)
+var sessionList =  make(map[string]*ssh.Session)
+var sessionIn =  make(map[string]io.WriteCloser)
+var sessionOut =  make(map[string]io.Reader)
+var sessionErr =  make(map[string]io.Reader)
 
 
 func SessionHandler(w http.ResponseWriter, r *http.Request) {
@@ -44,12 +43,11 @@ func SessionHandler(w http.ResponseWriter, r *http.Request) {
 		body, _ := ioutil.ReadAll(r.Body)
 		var c Connection
 		json.Unmarshal(body, &c)
-		timeNow := time.Now().UnixNano()
-		client, session := connectToHost(c.User, c.Host, c.Password, timeNow)
-		clientList[timeNow] = client
-		sessionList[timeNow] = session
-		timeString := strconv.FormatInt(timeNow, 10)
-		w.Write([]byte("{ID : " + timeString + "}"))
+		uuid := uuid.New()
+		client, session := connectToHost(c.User, c.Host, c.Password, uuid)
+		clientList[uuid] = client
+		sessionList[uuid] = session
+		w.Write([]byte("{ID : " + uuid + "}"))
 		case "PUT":
 		w.Write([]byte("Not Implemented"))
 		case "DELETE":
@@ -78,7 +76,7 @@ func CommandHandler(w http.ResponseWriter, r *http.Request) {
 
 
 // Connection to Host
-func connectToHost(user, host, password string, timeNow int64) (*ssh.Client, *ssh.Session) {
+func connectToHost(user, host, password, uuid string) (*ssh.Client, *ssh.Session) {
 
 	// Create sshConfig variable
 	sshConfig := &ssh.ClientConfig{
@@ -99,12 +97,12 @@ func connectToHost(user, host, password string, timeNow int64) (*ssh.Client, *ss
 		panic(err)
 	}
 
-	sessionOut[timeNow], _ = session.StdoutPipe()
-	sessionIn[timeNow], _ = session.StdinPipe()
-	sessionErr[timeNow], _ = session.StderrPipe()
+	sessionOut[uuid], _ = session.StdoutPipe()
+	sessionIn[uuid], _ = session.StdinPipe()
+	sessionErr[uuid], _ = session.StderrPipe()
 	session.Shell()
 	buf := make([]byte, 10000)
-	sessionOut[timeNow].Read(buf)
+	sessionOut[uuid].Read(buf)
 
 	// Return client and session
 	return client, session
@@ -113,7 +111,7 @@ func connectToHost(user, host, password string, timeNow int64) (*ssh.Client, *ss
 
 
 // SendCommand to Host
-func sendCommand(session *ssh.Session, command string, sessionID int64) (string) {
+func sendCommand(session *ssh.Session, command, sessionID string) (string) {
 
 	buf := make([]byte, 10000)
 
