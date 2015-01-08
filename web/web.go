@@ -9,18 +9,21 @@ import (
 	"github.com/mattn/go-sqlite3"
 )
 
+// Define DSLAM for Database
 type DSLAM struct {
 	id		sql.NullInt64
 	name	sql.NullString
 	IP		sql.NullString
 }
 
+// Define Card for Database
 type Card struct {
 	id				sql.NullInt64
 	name			sql.NullString
 	DSLAM_id	sql.NullInt64
 }
 
+// Define Port for Database
 type Port struct {
 	id			sql.NullInt64
 	name		sql.NullString
@@ -29,6 +32,7 @@ type Port struct {
 
 func Run() {
 
+	// Start Database Server
 	var DB_DRIVER string
 	sql.Register(DB_DRIVER, &sqlite3.SQLiteDriver{})
 	database, err := sql.Open(DB_DRIVER, "mysqlite_3")
@@ -41,6 +45,7 @@ func Run() {
 
 	fmt.Println("WebSite Lunched")
 
+	// When Client ask /
 	http.HandleFunc("/", indexHandler)
 
 }
@@ -48,14 +53,15 @@ func Run() {
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 
+	// Define Folders
 	templateBox, _ := rice.FindBox("templates")
 	viewBox, _ := rice.FindBox("views")
 	cssBox, _ := rice.FindBox("static-files/css")
 	fontBox, _ := rice.FindBox("static-files/fonts")
 	imageBox, _ := rice.FindBox("static-files/images")
 
+	// Return Files
 	switch r.URL.Path {
-
 		case "/":
 			headerTemplate, _ := templateBox.String("header.tmpl")
 			footerTemplate, _ := templateBox.String("footer.tmpl")
