@@ -10,16 +10,19 @@ import (
 	"code.google.com/p/go-uuid/uuid"
 )
 
+// Define Connection
 type Connection struct {
 	User		string
 	Host		string
 	Password	string
 }
 
+// Define SessionID
 type SessionID struct {
 	ID	string
 }
 
+// Define Command
 type Command struct {
 	SessionID string
 	Command	string
@@ -27,37 +30,36 @@ type Command struct {
 
 // Declare Maps
 var clientList = make(map[string]*ssh.Client)
-var sessionList =  make(map[string]*ssh.Session)
-var sessionIn =  make(map[string]io.WriteCloser)
-var sessionOut =  make(map[string]io.Reader)
-var sessionErr =  make(map[string]io.Reader)
+var sessionList = make(map[string]*ssh.Session)
+var sessionIn = make(map[string]io.WriteCloser)
+var sessionOut = make(map[string]io.Reader)
+var sessionErr = make(map[string]io.Reader)
 
 
 func SessionHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
-
 		case "GET":
-		fmt.Println("GET /")
-		w.Write([]byte("GET /"))
+			fmt.Println("GET /")
+			w.Write([]byte("GET /"))
 		case "POST":
-		body, _ := ioutil.ReadAll(r.Body)
-		var c Connection
-		json.Unmarshal(body, &c)
-		uuid := uuid.New()
-		client, session := connectToHost(c.User, c.Host, c.Password, uuid)
-		clientList[uuid] = client
-		sessionList[uuid] = session
-		w.Write([]byte("{ID : " + uuid + "}"))
+			body, _ := ioutil.ReadAll(r.Body)
+			var c Connection
+			json.Unmarshal(body, &c)
+			uuid := uuid.New()
+			client, session := connectToHost(c.User, c.Host, c.Password, uuid)
+			clientList[uuid] = client
+			sessionList[uuid] = session
+			w.Write([]byte("{ID : " + uuid + "}"))
 		case "PUT":
-		w.Write([]byte("Not Implemented"))
+			w.Write([]byte("Not Implemented"))
 		case "DELETE":
-		body, _ := ioutil.ReadAll(r.Body)
-		var s SessionID
-		json.Unmarshal(body, &s)
-		//closeSession
-		closeSession(clientList[s.ID])
-		delete(clientList, s.ID)
-		w.Write([]byte("{sessionRemoved : true}"))
+			body, _ := ioutil.ReadAll(r.Body)
+			var s SessionID
+			json.Unmarshal(body, &s)
+			//closeSession
+			closeSession(clientList[s.ID])
+			delete(clientList, s.ID)
+			w.Write([]byte("{sessionRemoved : true}"))
 	}
 }
 
@@ -97,6 +99,7 @@ func connectToHost(user, host, password, uuid string) (*ssh.Client, *ssh.Session
 		panic(err)
 	}
 
+	// Save Session
 	sessionOut[uuid], _ = session.StdoutPipe()
 	sessionIn[uuid], _ = session.StdinPipe()
 	sessionErr[uuid], _ = session.StderrPipe()
@@ -118,15 +121,15 @@ func sendCommand(session *ssh.Session, command, sessionID string) (string) {
 	// Send command
 	switch command {
 		case "":
-		return string("Command is Empty")
+			return string("Command is Empty")
 		case "\n":
-		return string("Command is not defined")
+			return string("Command is not defined")
 		default :
-		sessionIn[sessionID].Write([]byte(command + "\n"))
-		n, _ := sessionOut[sessionID].Read(buf)
-		loadStr := string(buf[:n])
-		// Return command result
-		return string(loadStr)
+			sessionIn[sessionID].Write([]byte(command + "\n"))
+			n, _ := sessionOut[sessionID].Read(buf)
+			loadStr := string(buf[:n])
+			// Return command result
+			return string(loadStr)
 	}
 
 }
