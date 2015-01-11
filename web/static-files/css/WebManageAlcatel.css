@@ -3,8 +3,12 @@
  * Most of these are inherited from Base, but I want to change a few.
  */
 body {
-    color: #526066;
+    background-color: #FCFCFC;
     height: 100%
+}
+
+.header {
+  background-color: #FCFCFC !important;
 }
 
 html {
@@ -17,11 +21,11 @@ h2, h3 {
     font-weight: 600;
 }
 
-p {
-    line-height: 0em;
+h4 {
+  color: #777;
 }
 
-
+/*
 /*
  * -- Layout Styles --
  */
@@ -69,7 +73,7 @@ p {
 .DSLAMList, .CardList, .PortList, .ServiceList {
   overflow: auto;
 }
-.pure-button {
+.list-button {
   background: rgb(255, 255, 255); /* this is a green */
 }
 
@@ -78,6 +82,11 @@ p {
 }
 .fa-exclamation {
   color : orange;
+}
+
+.button-error {
+  background: rgb(202, 60, 60); /* this is a maroon */
+  color: white;
 }
 
 
