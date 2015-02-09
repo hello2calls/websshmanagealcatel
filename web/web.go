@@ -5,56 +5,52 @@ import (
 	"net/http"
 	"text/template"
 	"github.com/GeertJohan/go.rice"
-	"database/sql"
-	"github.com/mattn/go-sqlite3"
 	"code.google.com/p/go-uuid/uuid"
 	"regexp"
+	"encoding/json"
+	//"os"
+	"io/ioutil"
 )
 
-var database *sql.DB
-var tx *sql.Tx
+//Service Structure
+type Service struct {
+	Id string `json:"Id"`
+	Name string `json:"Name"`
+	Status string `json:"Status"`
+}
+
+// Port Structure
+type Port struct {
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Status string `json:"status"`
+	Service []Service `json:"Service"`
+}
+
+// Card Structure
+type Card struct {
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Status string `json:"status"`
+	Port []Port `json:"Port"`
+}
+
+
+// DSLAM Structure
+type DSLAM struct {
+	Id string `json:"Id"`
+	Name string `json:"Name"`
+	Status string `json:"Status"`
+	Address string `json:"Address"`
+	Card []Card `json:"Card"`
+}
+
+// Data Structure
+type Data struct {
+	DSLAM []DSLAM `json:"DSLAM"`
+}
 
 func Run() {
-
-	// Register the driver
-	var DB_DRIVER string
-	sql.Register(DB_DRIVER, &sqlite3.SQLiteDriver{})
-	//Open Database
-	var err error
-	database, err = sql.Open(DB_DRIVER, "AlcatelDSLAM.database")
-	if err != nil {
-		fmt.Println("Failed to create the handle")
-	}
-	//Ping Database
-	if err2 := database.Ping(); err2 != nil {
-		fmt.Println("Failed to keep connection alive")
-	}
-	//Start Database
-	tx, err = database.Begin()
-	if err != nil {
-		fmt.Println("Error to create Database")
-		fmt.Println(err)
-	}
-	//Create DSLAM Table
-	_, err = database.Exec("CREATE TABLE IF NOT EXISTS DSLAM (id VARCHAR(100) PRIMARY KEY,name VARCHAR(100) NOT NULL,address VARCHAR(100) NOT NULL)",)
-	if err != nil {
-		fmt.Println("Error to create DSLAM Table")
-		fmt.Println(err)
-	}
-	//Create Card Table
-	_, err = database.Exec("CREATE TABLE IF NOT EXISTS Card (id VARCHAR(100) PRIMARY KEY,name VARCHAR(100) NOT NULL, active BOOLEAN NOT NULL,dslam_id INT NOT NULL,FOREIGN KEY (dslam_id) REFERENCES DSLAM(id))",)
-	if err != nil {
-		fmt.Println("Error to create Card Table")
-		fmt.Println(err)
-	}
-	//Create Port Table
-	_, err = database.Exec("CREATE TABLE IF NOT EXISTS DSLAM (id VARCHAR(100) PRIMARY KEY,name VARCHAR(100) NOT NULL, active BOOLEAN NOT NULL,card_id INT NOT NULL,FOREIGN KEY (card_id) REFERENCES Card(id))",)
-	if err != nil {
-		fmt.Println("Error to create Port Table")
-		fmt.Println(err)
-	}
-	// Commit Changes in Database
-	tx.Commit()
 
 	fmt.Println("WebSite Lunched")
 
@@ -67,18 +63,21 @@ func Run() {
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Define Folders
-	templateBox, _ := rice.FindBox("templates")
-	viewBox, _ := rice.FindBox("views")
-	cssBox, _ := rice.FindBox("static-files/css")
-	fontBox, _ := rice.FindBox("static-files/fonts")
-	imageBox, _ := rice.FindBox("static-files/images")
-	jsBox, _ := rice.FindBox("static-files/js")
+	var templateBox, _ = rice.FindBox("templates")
+	var viewBox, _ = rice.FindBox("views")
+	var cssBox, _ = rice.FindBox("static-files/css")
+	var fontBox, _ = rice.FindBox("static-files/fonts")
+	var imageBox, _ = rice.FindBox("static-files/images")
+	var jsBox, _ = rice.FindBox("static-files/js")
+	var headerTemplate, _ = templateBox.String("header.tmpl")
+	var footerTemplate, _ = templateBox.String("footer.tmpl")
+	var indexView, _ = viewBox.String("index.tmpl")
+	var optionView, _ = viewBox.String("options.tmpl")
 
-	headerTemplate, _ := templateBox.String("header.tmpl")
-	footerTemplate, _ := templateBox.String("footer.tmpl")
-
-	indexView, _ := viewBox.String("index.tmpl")
-	optionView, _ := viewBox.String("options.tmpl")
+	// Read File
+	var file, _ = ioutil.ReadFile("web/data.json")
+	var dataFile Data
+	var _ = json.Unmarshal(file, &dataFile)
 
 	// Return Files
 	switch r.URL.Path {
@@ -100,23 +99,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 					response, _ := template.New("option").Parse(option)
 					re := regexp.MustCompile("[a-z0-9\\-]*$")
 					DSLAMid := re.FindString(r.URL.RawQuery)
+					dslamPos := getDslamPosById(dataFile, DSLAMid)
 					DSLAMList := ""
 					OptionList := ""
-					rows, _ := database.Query("SELECT * FROM DSLAM")
-					for rows.Next() {
-						var id sql.NullString
-						var name sql.NullString
-						var address sql.NullString
-						rows.Scan(&id, &name, &address,)
-						DSLAMList += "<a class=\"list-button pure-button pure-u-1\" href=\"/DSLAM?id="+ id.String +"\"><i class=\"imageDSLAM fa fa-cube fa-3x\"></i><span class=\"textButtonDSLAM\">"+ name.String +"</span></a>"
+					for i := 0; i < len(dataFile.DSLAM); i++ {
+						DSLAMList += "<a class=\"list-button pure-button pure-u-1\" href=\"/DSLAM?id="+ dataFile.DSLAM[i].Id +"\"><i class=\"imageDSLAM fa fa-cube fa-3x\"></i><span class=\"textButtonDSLAM\">"+ dataFile.DSLAM[i].Name +"</span></a>"
 					}
-					rows, _ = database.Query("SELECT * FROM DSLAM WHERE id=?", DSLAMid)
-					var id sql.NullString
-					var name sql.NullString
-					var address sql.NullString
-					rows.Next()
-					rows.Scan(&id, &name, &address,)
-					OptionList = "<form style=\"margin-top:30px\" class=\"pure-form pure-form-aligned\" action=\"/DSLAM?\" method=\"POST\"><fieldset><div class=\"pure-control-group\"><label for=\"name\">Nom</label><input id=\"name\" name=\"name\" type=\"text\" value="+ name.String +"></div><div class=\"pure-control-group\"><label for=\"password\">Adresse</label><input id=\"address\" name=\"address\" type=\"text\" value="+ address.String +"></div><input type=\"hidden\" id=\"id\" value="+ id.String +"><button type=\"submit\" style=\"margin-left:180px\" class=\"pure-button-primary pure-button\">Envoyer</button></fieldset></form>"
+					OptionList = "<form style=\"margin-top:30px\" class=\"pure-form pure-form-aligned\" action=\"/DSLAM?\" method=\"POST\"><fieldset>"
+					OptionList += "<div class=\"pure-control-group\"><label for=\"name\">Nom</label><input id=\"name\" name=\"name\" type=\"text\" value="+ dataFile.DSLAM[dslamPos].Name +"></div><div class=\"pure-control-group\"><label for=\"password\">Adresse</label><input id=\"address\" name=\"address\" type=\"text\" value="+ dataFile.DSLAM[dslamPos].Address +"></div><input type=\"hidden\" name=\"id\" id=\"id\" value="+ dataFile.DSLAM[dslamPos].Id +"><button type=\"submit\" style=\"margin-left:180px\" class=\"pure-button-primary pure-button\">Envoyer</button></fieldset></form>"
 					OptionList += "<button onclick=\"sendDelete()\" class=\"button-error pure-button\" style=\"margin-left:180px\">Supprimer</button>"
 					response.Execute(w, map[string]string{"DSLAMList": DSLAMList, "Options": OptionList})
 				case "POST":
@@ -127,30 +117,48 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 					DSLAMList := ""
 					r.ParseForm()
 					if r.Form.Get("id") != "" {
-						database.Exec("UPDATE DSLAM SET name=?, address=? WHERE id=?", r.Form.Get("name"), r.Form.Get("address"), r.Form.Get("id"))
+						dslamPos := getDslamPosById(dataFile, r.Form.Get("id"))
+						//Save Old DSLAM
+						var oldDSLAM DSLAM
+						oldDSLAM = getDslamById(dataFile, r.Form.Get("id"))
+						//Delete DSLAM
+						dataFile.DSLAM = append(dataFile.DSLAM[:dslamPos], dataFile.DSLAM[dslamPos+1:]...)
+						// Add DSLAM
+						var newDSLAM DSLAM
+						newDSLAM.Id = r.Form.Get("id")
+						newDSLAM.Name = r.Form.Get("name")
+						newDSLAM.Address = r.Form.Get("address")
+						newDSLAM.Card = oldDSLAM.Card
+						dataFile.DSLAM = append(dataFile.DSLAM, newDSLAM)
 					} else {
-						database.Exec("INSERT INTO DSLAM (id, name, address) VALUES (?,?,?)", uuid.New(), r.Form.Get("name"), r.Form.Get("address"))
+						// Add DSLAM
+						var newDSLAM DSLAM
+						newDSLAM.Id = uuid.New()
+						newDSLAM.Name = r.Form.Get("name")
+						newDSLAM.Address = r.Form.Get("address")
+						dataFile.DSLAM = append(dataFile.DSLAM, newDSLAM)
 					}
-					tx.Commit()
+					jsonIndent, _ := json.MarshalIndent(dataFile, "", "\t")
+					ioutil.WriteFile("web/data.json", jsonIndent, 0777)
 					//Connexion au DSLAM pour la liste des Cartes et des Ports.
-					rows, _ := database.Query("SELECT * FROM DSLAM")
-					for rows.Next() {
-						var id sql.NullString
-						var name sql.NullString
-						var address sql.NullString
-						rows.Scan(&id, &name, &address,)
-						DSLAMList += "<a class=\"list-button pure-button pure-u-1\" href=\"/DSLAM?id="+ id.String +"\"><i class=\"imageDSLAM fa fa-cube fa-3x\"></i><span class=\"textButtonDSLAM\">"+ name.String +"</span></a>"
+					//rows, _ := database.Query("SELECT * FROM DSLAM;")
+					for i := 0; i < len(dataFile.DSLAM); i++ {
+						DSLAMList += "<a class=\"list-button pure-button pure-u-1\" href=\"/DSLAM?id="+ dataFile.DSLAM[i].Id +"\"><i class=\"imageDSLAM fa fa-cube fa-3x\"></i><span class=\"textButtonDSLAM\">"+ dataFile.DSLAM[i].Name +"</span></a>"
 					}
 					response.Execute(w, map[string]string{"DSLAMList": DSLAMList, "Options": ""})
 				case "DELETE":
+					// Extract ID
 					re := regexp.MustCompile("[a-z0-9\\-]*$")
+					// Run Regex on String
 					DSLAMid := re.FindString(r.URL.RawQuery)
-					fmt.Println(DSLAMid)
-					test, err := database.Exec("DELETE FROM DSLAM WHERE id=?", DSLAMid)
-					txerr := tx.Commit()
-					fmt.Println(test)
-					fmt.Println(err)
-					fmt.Println(txerr)
+					// Get Pos
+					dslamPos := getDslamPosById(dataFile, DSLAMid)
+					// Remove DSLAM
+					dataFile.DSLAM = append(dataFile.DSLAM[:dslamPos], dataFile.DSLAM[dslamPos+1:]...)
+					// Indent JSON
+					jsonIndent, _ := json.MarshalIndent(dataFile, "", "\t")
+					// Write JSON in File
+					ioutil.WriteFile("web/data.json", jsonIndent, 0777)
 			}
 		case "/option":
 			option := headerTemplate
@@ -158,13 +166,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			option += footerTemplate
 			response, _ := template.New("option").Parse(option)
 			DSLAMList := ""
-			rows, _ := database.Query("SELECT * FROM DSLAM")
-			for rows.Next() {
-				var id sql.NullString
-				var name sql.NullString
-				var address sql.NullString
-				rows.Scan(&id, &name, &address,)
-				DSLAMList += "<a class=\"list-button pure-button pure-u-1\" href=\"/DSLAM?id="+ id.String +"\"><i class=\"imageDSLAM fa fa-cube fa-3x\"></i><span class=\"textButtonDSLAM\">"+ name.String +"</span></a>"
+			for i := 0; i < len(dataFile.DSLAM); i++ {
+				DSLAMList += "<a class=\"list-button pure-button pure-u-1\" href=\"/DSLAM?id="+ dataFile.DSLAM[i].Id +"\"><i class=\"imageDSLAM fa fa-cube fa-3x\"></i><span class=\"textButtonDSLAM\">"+ dataFile.DSLAM[i].Name +"</span></a>"
 			}
 			Options := ""
 			switch r.URL.RawQuery {
@@ -214,7 +217,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte(response))
 		case "/js/WebManageAlcatel.js":
 			response, _ := jsBox.String("WebManageAlcatel.js")
-			w.Header().Set("Content-Type", "text/javascript")
+			w.Header().Set("Content-Type", "text/javascrAddresst")
 			w.Write([]byte(response))
 		case "/favicon.png":
 			response, _ := imageBox.String("favicon.png")
@@ -222,5 +225,30 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte(response))
 		default:
 	}
+
+}
+
+
+func getDslamById(data Data, id string) (DSLAM) {
+
+	for i := 0; i < len(data.DSLAM); i++ {
+		if data.DSLAM[i].Id == id {
+			return data.DSLAM[i]
+		}
+	}
+	var null DSLAM
+	return null
+
+}
+
+
+func getDslamPosById(data Data, id string) (int) {
+
+	for i := 0; i < len(data.DSLAM); i++ {
+		if data.DSLAM[i].Id == id {
+			return i
+		}
+	}
+	return -1
 
 }

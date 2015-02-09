@@ -46,10 +46,14 @@ func SessionHandler(w http.ResponseWriter, r *http.Request) {
 			var c Connection
 			json.Unmarshal(body, &c)
 			uuid := uuid.New()
-			client, session := connectToHost(c.User, c.Host, c.Password, uuid)
-			clientList[uuid] = client
-			sessionList[uuid] = session
-			w.Write([]byte("{ID : " + uuid + "}"))
+			client, session, errorSsh := connectToHost(c.User, c.Host, c.Password, uuid)
+			if errorSsh != "OK" {
+				w.Write([]byte("{status : " + errorSsh + "}"))
+			} else {
+				clientList[uuid] = client
+				sessionList[uuid] = session
+				w.Write([]byte("{ID : " + uuid + ", status : OK}"))
+			}
 		case "PUT":
 			w.Write([]byte("Not Implemented"))
 		case "DELETE":
@@ -78,7 +82,7 @@ func CommandHandler(w http.ResponseWriter, r *http.Request) {
 
 
 // Connection to Host
-func connectToHost(user, host, password, uuid string) (*ssh.Client, *ssh.Session) {
+func connectToHost(user, host, password, uuid string) (client *ssh.Client, session *ssh.Session, errorSsh string) {
 
 	// Create sshConfig variable
 	sshConfig := &ssh.ClientConfig{
@@ -89,26 +93,30 @@ func connectToHost(user, host, password, uuid string) (*ssh.Client, *ssh.Session
 	// Create Client
 	client, err := ssh.Dial("tcp", host, sshConfig)
 	if err != nil {
-		panic(err)
+		errorSsh = "SSH_KO"
+		// Return client, session and error
+		return client, session, errorSsh
+	} else {
+		// Create Session
+		session, err = client.NewSession()
+		if err != nil {
+			client.Close()
+			errorSsh = "Session_KO"
+			// Return client, session and error
+			return client, session, errorSsh
+		} else {
+			// Save Session
+			sessionOut[uuid], err = session.StdoutPipe()
+			sessionIn[uuid], _ = session.StdinPipe()
+			sessionErr[uuid], _ = session.StderrPipe()
+			session.Shell()
+			var buf []byte
+			sessionOut[uuid].Read(buf)
+			// Return client, session and error
+			errorSsh = "OK"
+			return client, session, errorSsh
+		}
 	}
-
-	// Create Session
-	session, err := client.NewSession()
-	if err != nil {
-		client.Close()
-		panic(err)
-	}
-
-	// Save Session
-	sessionOut[uuid], _ = session.StdoutPipe()
-	sessionIn[uuid], _ = session.StdinPipe()
-	sessionErr[uuid], _ = session.StderrPipe()
-	session.Shell()
-	buf := make([]byte, 10000)
-	sessionOut[uuid].Read(buf)
-
-	// Return client and session
-	return client, session
 
 }
 

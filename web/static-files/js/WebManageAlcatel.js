@@ -5,5 +5,5 @@ function sendDelete() {
 	xmlhttp= new XMLHttpRequest();
 	xmlhttp.open("DELETE", url, true);
 	xmlhttp.send();
-	//document.location.href="/option";
+	document.location.href="/option";
 }
