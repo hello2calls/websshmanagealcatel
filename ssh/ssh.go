@@ -2,12 +2,16 @@ package sshConnect
 
 import (
 	"fmt"
-	"golang.org/x/crypto/ssh"
+	//"golang.org/x/crypto/ssh"
+	"code.google.com/marksheahan-sshblock/ssh"
 	"net/http"
 	"io/ioutil"
 	"encoding/json"
 	"io"
 	"code.google.com/p/go-uuid/uuid"
+	"time"
+	"bytes"
+	"encoding/binary"
 )
 
 // Define Connection
@@ -48,13 +52,16 @@ func SessionHandler(w http.ResponseWriter, r *http.Request) {
 			uuid := uuid.New()
 			client, session, errorSsh := connectToHost(c.User, c.Host, c.Password, uuid)
 			if errorSsh != "OK" {
-				w.Write([]byte("{status : " + errorSsh + "}"))
+				w.Header().Set("Content-Type", "application/json")
+				w.Write([]byte("{\"Status\" : \"" + errorSsh + "\"}"))
 			} else {
 				clientList[uuid] = client
 				sessionList[uuid] = session
-				w.Write([]byte("{ID : " + uuid + ", status : OK}"))
+				w.Header().Set("Content-Type", "application/json")
+				w.Write([]byte("{\"ID\" : \"" + uuid + "\", \"Status\" : \"OK\"}"))
 			}
 		case "PUT":
+			w.Header().Set("Content-Type", "application/json")
 			w.Write([]byte("Not Implemented"))
 		case "DELETE":
 			body, _ := ioutil.ReadAll(r.Body)
@@ -63,7 +70,8 @@ func SessionHandler(w http.ResponseWriter, r *http.Request) {
 			//closeSession
 			closeSession(clientList[s.ID])
 			delete(clientList, s.ID)
-			w.Write([]byte("{sessionRemoved : true}"))
+			w.Header().Set("Content-Type", "application/json")
+			w.Write([]byte("{\"sessionRemoved\" : \"true\"}"))
 	}
 }
 
@@ -76,7 +84,40 @@ func CommandHandler(w http.ResponseWriter, r *http.Request) {
 		json.Unmarshal(body, &c)
 		session := sessionList[c.SessionID]
 		out := sendCommand(session, c.Command, c.SessionID)
-		w.Write([]byte("{commandOut : " + out + "}"))
+
+		str := make([]string, len(bytes.Split([]byte(out), []byte{'\n'})))
+		for i, line := range bytes.Split([]byte(out), []byte{'\n'}) {
+			fmt.Println("line -"+string(line)+"-")
+			fmt.Println(line)
+			fmt.Println(line[len(line)-1])
+			//fmt.Println(bytes.Contains([]byte(strconv.Itoa(13)), line))
+			bs := make([]byte, 4)
+			binary.LittleEndian.PutUint32(bs, 13)
+			fmt.Println(bs[0])
+			if bs[0] == line[len(line)-1] {
+				if len(line)-1 != 0 {
+					str[i] = string(line[:len(line)-1])
+				}
+				fmt.Println("contain 13")
+			} else {
+				str[i] = string(line)
+			}
+		}
+
+		var commandOut string
+		commandOut = "["
+		for i, line := range str {
+			fmt.Println(commandOut)
+			commandOut += "'" + line + "'"
+			if i != len(str)-1 {
+				commandOut += ","
+			}
+		}
+		commandOut += "]"
+		fmt.Println("COMMAND : ")
+		fmt.Println(commandOut)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte("{'CommandOut' : " + commandOut + "}"))
 	}
 }
 
@@ -88,12 +129,15 @@ func connectToHost(user, host, password, uuid string) (client *ssh.Client, sessi
 	sshConfig := &ssh.ClientConfig{
 		User: user,
 		Auth: []ssh.AuthMethod{ssh.Password(password)},
+		Config: ssh.Config{
+			Ciphers: ssh.AllSupportedCiphers(),
+			},
 	}
 
 	// Create Client
 	client, err := ssh.Dial("tcp", host, sshConfig)
 	if err != nil {
-		errorSsh = "SSH_KO"
+		errorSsh = err.Error()
 		// Return client, session and error
 		return client, session, errorSsh
 	} else {
@@ -124,20 +168,38 @@ func connectToHost(user, host, password, uuid string) (client *ssh.Client, sessi
 // SendCommand to Host
 func sendCommand(session *ssh.Session, command, sessionID string) (string) {
 
-	buf := make([]byte, 10000)
+	buf := make([]byte, 1000)
+
+	var loadStr bytes.Buffer
 
 	// Send command
 	switch command {
 		case "":
-			return string("Command is Empty")
+			loadStr.WriteString("Command is Empty")
+			return loadStr.String()
 		case "\n":
-			return string("Command is not defined")
+			loadStr.WriteString("Command is not defined")
+			return loadStr.String()
 		default :
 			sessionIn[sessionID].Write([]byte(command + "\n"))
-			n, _ := sessionOut[sessionID].Read(buf)
-			loadStr := string(buf[:n])
-			// Return command result
-			return string(loadStr)
+			time.Sleep(1000 * time.Millisecond)
+
+			n, _ := sessionOut[sessionID].Read(buf);
+
+			for n > 0 {
+				if n < 1000 {
+					break
+				}
+				loadStr.WriteString(string(buf[:n]))
+				time.Sleep(1000 * time.Millisecond)
+				n, _ = sessionOut[sessionID].Read(buf)
+			}
+
+			loadStr.WriteString(string(buf[:n]))
+
+			fmt.Println(loadStr.String())
+
+			return loadStr.String()
 	}
 
 }

@@ -1,0 +1,49 @@
+{
+	"DSLAM": [
+		{
+			"Id": "58476a68-ab4a-4b12-8ac2-a4f0b928555d",
+			"Name": "7302",
+			"Status": "",
+			"Address": "192.168.93.101",
+			"User": "isadmin",
+			"Password": "ANS#150",
+			"Card": null
+		},
+		{
+			"Id": "bca47edf-5a30-492b-856b-f7a167217dd6",
+			"Name": "7360FX4",
+			"Status": "",
+			"Address": "192.168.93.111",
+			"User": "isadmin",
+			"Password": "ANS#150",
+			"Card": null
+		},
+		{
+			"Id": "0c7c1647-1954-4a05-9c5b-112d103dfd90",
+			"Name": "7330",
+			"Status": "",
+			"Address": "192.168.93.112",
+			"User": "isadmin",
+			"Password": "ANS#150",
+			"Card": null
+		},
+		{
+			"Id": "92295af9-c3a9-45bd-96a3-d63da7f2fa92",
+			"Name": "7360FX16",
+			"Status": "ssh: handshake failed: ssh: unable to authenticate, attempted methods [none password], no supported methods remain",
+			"Address": "192.168.93.103",
+			"User": "isadmin",
+			"Password": "ANS#150",
+			"Card": null
+		},
+		{
+			"Id": "1c13798b-e3f0-40cf-95b3-4fcd0eee0fc8",
+			"Name": "AMS",
+			"Status": "OK",
+			"Address": "192.168.93.250",
+			"User": "root",
+			"Password": "Tr3m@r",
+			"Card": null
+		}
+	]
+}
