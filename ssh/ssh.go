@@ -1,7 +1,7 @@
 package sshConnect
 
 import (
-	"fmt"
+	//"fmt"
 	//"golang.org/x/crypto/ssh"
 	"code.google.com/marksheahan-sshblock/ssh"
 	"net/http"
@@ -12,6 +12,7 @@ import (
 	"time"
 	"bytes"
 	"encoding/binary"
+	"strings"
 )
 
 // Define Connection
@@ -43,7 +44,6 @@ var sessionErr = make(map[string]io.Reader)
 func SessionHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 		case "GET":
-			fmt.Println("GET /")
 			w.Write([]byte("GET /"))
 		case "POST":
 			body, _ := ioutil.ReadAll(r.Body)
@@ -87,18 +87,12 @@ func CommandHandler(w http.ResponseWriter, r *http.Request) {
 
 		str := make([]string, len(bytes.Split([]byte(out), []byte{'\n'})))
 		for i, line := range bytes.Split([]byte(out), []byte{'\n'}) {
-			fmt.Println("line -"+string(line)+"-")
-			fmt.Println(line)
-			fmt.Println(line[len(line)-1])
-			//fmt.Println(bytes.Contains([]byte(strconv.Itoa(13)), line))
 			bs := make([]byte, 4)
 			binary.LittleEndian.PutUint32(bs, 13)
-			fmt.Println(bs[0])
 			if bs[0] == line[len(line)-1] {
 				if len(line)-1 != 0 {
 					str[i] = string(line[:len(line)-1])
 				}
-				fmt.Println("contain 13")
 			} else {
 				str[i] = string(line)
 			}
@@ -107,17 +101,14 @@ func CommandHandler(w http.ResponseWriter, r *http.Request) {
 		var commandOut string
 		commandOut = "["
 		for i, line := range str {
-			fmt.Println(commandOut)
-			commandOut += "'" + line + "'"
+			commandOut += "\"" + line + "\""
 			if i != len(str)-1 {
 				commandOut += ","
 			}
 		}
 		commandOut += "]"
-		fmt.Println("COMMAND : ")
-		fmt.Println(commandOut)
 		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte("{'CommandOut' : " + commandOut + "}"))
+		w.Write([]byte("{\"CommandOut\" : " + commandOut + "}"))
 	}
 }
 
@@ -185,19 +176,19 @@ func sendCommand(session *ssh.Session, command, sessionID string) (string) {
 			time.Sleep(1000 * time.Millisecond)
 
 			n, _ := sessionOut[sessionID].Read(buf);
+			var line string
 
 			for n > 0 {
 				if n < 1000 {
 					break
 				}
-				loadStr.WriteString(string(buf[:n]))
+				line = strings.Replace(string(buf[:n]), "\"", "\\\"", -1)
+				loadStr.WriteString(line)
 				time.Sleep(1000 * time.Millisecond)
 				n, _ = sessionOut[sessionID].Read(buf)
 			}
 
 			loadStr.WriteString(string(buf[:n]))
-
-			fmt.Println(loadStr.String())
 
 			return loadStr.String()
 	}
