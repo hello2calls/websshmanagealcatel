@@ -4,11 +4,20 @@
  */
 body {
     background-color: #FCFCFC;
-    height: 100%
+    height: 100%;
+    /*background-image: url("/background.jpg");*/
+    background-repeat: no-repeat;
+    background-position:center center;
+    position:relative;
 }
 
 .header {
-  background-color: #FCFCFC !important;
+  background-color: #6C7A89 !important;
+  height: 35px
+}
+
+.pure-menu a {
+  color: #FCFCFC;
 }
 
 html {
@@ -22,7 +31,14 @@ h2, h3 {
 }
 
 h4 {
-  color: #777;
+  color: #6C7A89;
+}
+
+.button-secondary {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background: #34A7C1;
 }
 
 /*
@@ -43,7 +59,7 @@ h4 {
  */
 .pure-menu {
     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
-    height: 5%;
+    /*height: 5%;*/
 }
 
 /*
@@ -52,6 +68,9 @@ h4 {
 .content {
   padding: 2%;
   height: 81%;
+  height: -moz-calc(100% - 50px); /* Firefox */
+  height: -webkit-calc(100% - 50px); /* Chrome, Safari */
+  height: calc(100% - 50px); /* IE9+ and future browsers */
 }
 
 .list {
@@ -67,7 +86,7 @@ h4 {
 }
 
 .textButtonPort {
-  font-size: 100%;
+  font-size: 150%;
 }
 
 .DSLAMList, .CardList, .PortList, .ServiceList {
@@ -91,13 +110,23 @@ h4 {
 
 
 .footer {
-    background: #888;
-    color: #ddd;
+    background: #6C7A89 !important;
+    color: #FCFCFC !important;
     text-align: center;
-    height: 5%;
+    height: 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
 }
+
+.footer p {
+    margin: 0px;
+}
+
 .footer a {
-    color: #ddd;
+    color: #FCFCFC;
 }
 
 
@@ -152,11 +181,15 @@ h4 {
    margin: 0.8em 0.1em;
  }
  .onoffswitch-checkbox {
-   display: none;
+   display: none !important;
  }
  .onoffswitch-label {
    display: block; overflow: hidden; cursor: pointer;
-   border: 2px solid #999999; border-radius: 15px;
+   border: 0px solid #999999; border-radius: 15px;
+   margin-top: 0px !important;
+   margin-right: 0px !important;
+   margin-bottom: 0px !important;
+   margin-left: 0px !important;
  }
  .onoffswitch-inner {
    display: block; width: 200%; margin-left: -100%;
@@ -182,8 +215,8 @@ h4 {
  .onoffswitch-switch {
    display: block; width: 15px; height: 20px; margin: 4.5px;
    background: #FFFFFF;
-   border: 2px solid #999999; border-radius: 15px;
-   position: absolute; top: 0; bottom: 0; right: 46px;
+   border: 0px solid #999999; border-radius: 15px;
+   position: absolute; top: 0; bottom: 0; right: 50px;
    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
  }
@@ -191,5 +224,67 @@ h4 {
    margin-left: 0;
  }
  .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-   right: 0px;
+   right: 5px;
  }
+
+ .loader {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  border: 2px solid #FBFBFB;
+  top: 50%;
+  animation: loader 3s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #FBFBFB;
+  animation: loader-inner 3s infinite ease-in;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(180deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 100%;
+  }
+
+  25% {
+    height: 100%;
+  }
+
+  50% {
+    height: 0%;
+  }
+
+  75% {
+    height: 0%;
+  }
+
+  100% {
+    height: 100%;
+  }
+}

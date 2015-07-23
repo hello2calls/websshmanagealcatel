@@ -1,0 +1,1389 @@
+{
+	"DSLAM": [
+		{
+			"Id": "d991b982-3e39-4791-9678-01f9fbcad10b",
+			"Name": "7302",
+			"Status": "",
+			"Address": "83.206.17.18:10101",
+			"User": "isadmin",
+			"Password": "ANS#150",
+			"Card": [
+				{
+					"Name": "nant-a",
+					"Slot": "nt-a",
+					"Opers-Status": "yes",
+					"Error-Status": "no-error",
+					"Availability": "available",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "nt-b",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "nalt-j",
+					"Slot": "lt:1/1/1",
+					"Opers-Status": "yes",
+					"Error-Status": "no-error",
+					"Availability": "available",
+					"Port": [
+						{
+							"Index": "1/1/1/1",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/2",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/3",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/4",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/5",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/6",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/7",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/8",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/9",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/10",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/11",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/12",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/13",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/14",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/15",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/16",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/17",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/18",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/19",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/20",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/21",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/22",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/23",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/24",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/25",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/26",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/27",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/28",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/29",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/30",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/31",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/32",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/33",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/34",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/35",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/36",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/37",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/38",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/39",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/40",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/41",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/42",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/43",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/44",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/45",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/46",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/47",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/48",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						}
+					]
+				},
+				{
+					"Name": "nvlt-n",
+					"Slot": "lt:1/1/2",
+					"Opers-Status": "no",
+					"Error-Status": "waiting-for-sw",
+					"Availability": "available",
+					"Port": []
+				},
+				{
+					"Name": "nalt-e",
+					"Slot": "lt:1/1/3",
+					"Opers-Status": "no",
+					"Error-Status": "waiting-for-sw",
+					"Availability": "available",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/4",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/5",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/6",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/7",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/8",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/12",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/13",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/14",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/15",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/16",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/17",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/18",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/19",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				}
+			]
+		},
+		{
+			"Id": "83c8741e-a86d-4c17-b2ec-65e9ebc6404f",
+			"Name": "7360FX16",
+			"Status": "dial tcp 83.206.17.18:10103: network is unreachable",
+			"Address": "83.206.17.18:10103",
+			"User": "isadmin",
+			"Password": "ANS#150",
+			"Card": [
+				{
+					"Name": "fant-f",
+					"Slot": "nt-a",
+					"Opers-Status": "yes",
+					"Error-Status": "no-error",
+					"Availability": "available",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "nt-b",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "nglt-a",
+					"Slot": "lt:1/1/1",
+					"Opers-Status": "yes",
+					"Error-Status": "no-error",
+					"Availability": "available",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/2",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/3",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/4",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/5",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/6",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/7",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/8",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/12",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/13",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/14",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/15",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/16",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/17",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/18",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/19",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				}
+			]
+		},
+		{
+			"Id": "4883886d-e8e4-4eb8-8df7-c147e0504571",
+			"Name": "7302Interne",
+			"Status": "OK",
+			"Address": "192.168.93.101:22",
+			"User": "isadmin",
+			"Password": "ANS#150",
+			"Card": [
+				{
+					"Name": "nant-a",
+					"Slot": "nt-a",
+					"Opers-Status": "yes",
+					"Error-Status": "no-error",
+					"Availability": "available",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "nt-b",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "nalt-j",
+					"Slot": "lt:1/1/1",
+					"Opers-Status": "yes",
+					"Error-Status": "no-error",
+					"Availability": "available",
+					"Port": [
+						{
+							"Index": "1/1/1/1",
+							"Name": "",
+							"Adm-State": "up",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": [
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:37",
+									"Vlan": "30"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								},
+								{
+									"Id": "dsl:8:35",
+									"Vlan": "10"
+								},
+								{
+									"Id": "dsl:8:36",
+									"Vlan": "20"
+								}
+							]
+						},
+						{
+							"Index": "1/1/1/2",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/3",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/4",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/5",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/6",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/7",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/8",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/9",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/10",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/11",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/12",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/13",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/14",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/15",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/16",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/17",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/18",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/19",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/20",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/21",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/22",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/23",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/24",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/25",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/26",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/27",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/28",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/29",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/30",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/31",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/32",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/33",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/34",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/35",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/36",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/37",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/38",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/39",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/40",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/41",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/42",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/43",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/44",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/45",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/46",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/47",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						},
+						{
+							"Index": "1/1/1/48",
+							"Name": "",
+							"Adm-State": "down",
+							"Opr-State/Tx-Rate-Ds": "down",
+							"Cur-Op-Mode": "0",
+							"Service": null
+						}
+					]
+				},
+				{
+					"Name": "nvlt-n",
+					"Slot": "lt:1/1/2",
+					"Opers-Status": "no",
+					"Error-Status": "waiting-for-sw",
+					"Availability": "available",
+					"Port": []
+				},
+				{
+					"Name": "nalt-e",
+					"Slot": "lt:1/1/3",
+					"Opers-Status": "no",
+					"Error-Status": "waiting-for-sw",
+					"Availability": "available",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/4",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/5",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/6",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/7",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/8",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/12",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/13",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/14",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/15",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/16",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/17",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/18",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				},
+				{
+					"Name": "empty",
+					"Slot": "lt:1/1/19",
+					"Opers-Status": "no",
+					"Error-Status": "no-error",
+					"Availability": "not-installed",
+					"Port": []
+				}
+			]
+		}
+	]
+}
