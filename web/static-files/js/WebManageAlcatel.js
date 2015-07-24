@@ -23,6 +23,13 @@ window.onload = function() {
 		var url2 = "/SITEAPI/update"
 		xmlhttp2.open("GET", url2, true)
 		xmlhttp2.send()
+		xmlhttp2.onreadystatechange=function()
+		{
+			if (xmlhttp2.readyState==4 && xmlhttp2.status==200)
+			{
+				document.getElementById('loader').style.display = "none"
+			}
+		}
 	}
 	document.getElementById('servicesForm').onsubmit = function() {
 			var name = document.getElementById('name').value;

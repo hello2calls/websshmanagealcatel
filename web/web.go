@@ -262,6 +262,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			response.Execute(w, map[string]string{"DSLAMList": DSLAMList, "Options": ""})
 		// DELETE DSLAM when we are in option page
 		case "DELETE":
+			fmt.Println("Delete DSLAM")
 			// Extract ID
 			re := regexp.MustCompile("[a-z0-9\\-]*$")
 			// Run Regex on String
@@ -319,9 +320,12 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		for i := 0; i < len(dataFile.DSLAM); i++ {
 			var dslamID = dataFile.DSLAM[i].ID
-			sessionID := getSSHSession(dataFile, dslamID)
-			if sessionID != "SSH_KO" {
-				go writeCard(dataFile, sessionID, dslamID)
+			writeStatus(dataFile, dslamID)
+			if dataFile.DSLAM[i].Status == "OK" {
+				sessionID := getSSHSession(dataFile, dslamID)
+				if sessionID != "SSH_KO" {
+					go writeCard(dataFile, sessionID, dslamID)
+				}
 			}
 		}
 		w.Write([]byte("OK"))

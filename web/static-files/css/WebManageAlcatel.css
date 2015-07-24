@@ -66,7 +66,8 @@ h4 {
  * -- TABLE --
  */
 .content {
-  padding: 2%;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
   height: 81%;
   height: -moz-calc(100% - 50px); /* Firefox */
   height: -webkit-calc(100% - 50px); /* Chrome, Safari */
@@ -129,13 +130,44 @@ h4 {
     color: #FCFCFC;
 }
 
+.aimgbis {
+  display: none !important;
+  padding-top: 5px !important;
+  padding-right: 0px !important;
+  padding-bottom: 5px !important;
+  padding-left: 0px !important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.aimg {
+  display: block !important;
+  padding-top: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.loader {
+  left: -30%
+}
 
 
 
 /*
  * -- Small --
  */
-@media (min-width: 567px) {
+@media (min-width: 568px) {
+
+  .loader {
+    left: 75%
+  }
 
 }
 
@@ -143,10 +175,22 @@ h4 {
 /*
  * -- Medium --
  */
-@media (min-width: 767px) {
+@media (min-width: 768px) {
 
   .imagePort {
     font-size: 1.5em !important;
+  }
+
+  .aimgbis {
+    display: block !important;
+  }
+
+  .aimg {
+    display: none !important;
+  }
+
+  .loader {
+    left: 80%
   }
 
 }
@@ -155,10 +199,14 @@ h4 {
 /*
  * -- Large --
  */
-@media (min-width: 1023px) {
+@media (min-width: 1024px) {
 
   .imagePort {
     font-size: 2em !important;
+  }
+
+  .loader {
+    left: 85%
   }
 
 }
@@ -167,7 +215,11 @@ h4 {
 /*
  * -- Xlarge --
  */
-@media (min-width: 1279px) {
+@media (min-width: 1280px) {
+
+  .loader {
+    left: 90%
+  }
 
 }
 
