@@ -280,7 +280,7 @@ h4 {
  }
 
  .loader {
-  display: inline-block;
+  display: none;
   width: 15px;
   height: 15px;
   position: relative;
