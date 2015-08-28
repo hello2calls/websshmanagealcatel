@@ -176,21 +176,26 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	// Return Files when the user ask the root path (index)
 	case "/":
-		index := headerTemplate
-		index += indexView
-		index += footerTemplate
-		response, _ := template.New("index").Parse(index)
-		DSLAMList := ""
-		for i := 0; i < len(dataFile.DSLAM); i++ {
-			if dataFile.DSLAM[i].Status != "OK" {
-				DSLAMList += "<button class=\"list-button pure-button pure-u-1\" disabled id=\"" + dataFile.DSLAM[i].ID + "\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-cube fa-stack-2x\"></i><i class=\"fa fa-close fa-stack-2x\"></i></span><span class=\"textButtonDSLAM\">" + dataFile.DSLAM[i].Name + "</span></a>"
-			} else {
-				DSLAMList += "<button onclick=\"getDslam('" + dataFile.DSLAM[i].ID + "')\" class=\"list-button pure-button pure-u-1\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-cube fa-stack-2x\"></i></span><span class=\"textButtonDSLAM\">" + dataFile.DSLAM[i].Name + "</span></a>"
+		//Check if data file contain DSLAM and redirect to option if not
+		if len(dataFile.DSLAM) == 0 {
+			http.Redirect(w, r, "/option", http.StatusFound)
+		} else {
+			index := headerTemplate
+			index += indexView
+			index += footerTemplate
+			response, _ := template.New("index").Parse(index)
+			DSLAMList := ""
+			for i := 0; i < len(dataFile.DSLAM); i++ {
+				if dataFile.DSLAM[i].Status != "OK" {
+					DSLAMList += "<button class=\"list-button pure-button pure-u-1\" disabled id=\"" + dataFile.DSLAM[i].ID + "\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-cube fa-stack-2x\"></i><i class=\"fa fa-close fa-stack-2x\"></i></span><span class=\"textButtonDSLAM\">" + dataFile.DSLAM[i].Name + "</span></a>"
+				} else {
+					DSLAMList += "<button onclick=\"getDslam('" + dataFile.DSLAM[i].ID + "')\" class=\"list-button pure-button pure-u-1\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-cube fa-stack-2x\"></i></span><span class=\"textButtonDSLAM\">" + dataFile.DSLAM[i].Name + "</span></a>"
+				}
 			}
+			CardList := ""
+			PortList := ""
+			response.Execute(w, map[string]string{"DSLAMList": DSLAMList, "CardList": CardList, "PortList": PortList})
 		}
-		CardList := ""
-		PortList := ""
-		response.Execute(w, map[string]string{"DSLAMList": DSLAMList, "CardList": CardList, "PortList": PortList})
 	// Manage DSLAM
 	case "/DSLAM":
 		switch r.Method {
