@@ -3,9 +3,7 @@ package web
 import (
 	"bytes"
 	"encoding/json"
-	"encoding/xml"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -13,14 +11,13 @@ import (
 	"strings"
 	"text/template"
 
-	"crypto/aes"
-	"crypto/cipher"
-	"crypto/rand"
-
 	"code.google.com/p/go-uuid/uuid"
 	"github.com/GeertJohan/go.rice"
 
-	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/structures"
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/equipment"
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/file"
+	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/structures"
+	WD "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/writeData"
 )
 
 // Run lunch Website Interface
@@ -50,7 +47,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Read File
 	var dataFile S.Data
-	dataFile = readFile("data.json")
+	dataFile = file.ReadFile("data.json")
 
 	switch r.URL.Path {
 	// Return Files when the user ask the root path (index)
@@ -89,7 +86,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			OptionList := ""
 			if r.URL.RawQuery != "" {
 				dslamID := re.FindString(r.URL.RawQuery)
-				dslamPos := getDslamPosByID(dataFile, dslamID)
+				dslamPos := equipment.GetDslamPosByID(dataFile, dslamID)
 				for i := 0; i < len(dataFile.DSLAM); i++ {
 					if dataFile.DSLAM[i].Status != "OK" {
 						DSLAMList += "<a class=\"list-button pure-button pure-u-1\" href=\"/DSLAM?id=" + dataFile.DSLAM[i].ID + "\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-cube fa-stack-2x\"></i><i class=\"fa fa-close fa-stack-2x\"></i></span><span class=\"textButtonDSLAM\">" + dataFile.DSLAM[i].Name + "</span></a>"
@@ -123,9 +120,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			newDSLAM.Password = r.Form.Get("password")
 			if r.Form.Get("id") != "" {
 				newDSLAM.ID = r.Form.Get("id")
-				dslamPos := getDslamPosByID(dataFile, r.Form.Get("id"))
+				dslamPos := equipment.GetDslamPosByID(dataFile, r.Form.Get("id"))
 				var oldDSLAM S.DSLAM
-				oldDSLAM = getDslamByID(dataFile, newDSLAM.ID)
+				oldDSLAM = equipment.GetDslamByID(dataFile, newDSLAM.ID)
 				newDSLAM.ID = r.Form.Get("id")
 				newDSLAM.Card = oldDSLAM.Card
 				//replace DSLAM
@@ -135,9 +132,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 				newDSLAM.ID = uuid.New()
 				dataFile.DSLAM = append(dataFile.DSLAM, newDSLAM)
 			}
-			writeFile(dataFile, "data.json")
+			file.WriteFile(dataFile, "data.json")
 
-			go writeStatus(dataFile, newDSLAM.ID)
+			go WD.WriteStatus(dataFile, newDSLAM.ID)
 			// Create Response Body
 			for i := 0; i < len(dataFile.DSLAM); i++ {
 				if dataFile.DSLAM[i].Status != "OK" {
@@ -155,11 +152,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 				// Run Regex on String
 				dslamID := re.FindString(r.URL.RawQuery)
 				// Get Pos
-				dslamPos := getDslamPosByID(dataFile, dslamID)
+				dslamPos := equipment.GetDslamPosByID(dataFile, dslamID)
 				// Remove DSLAM
 				dataFile.DSLAM = append(dataFile.DSLAM[:dslamPos], dataFile.DSLAM[dslamPos+1:]...)
 				// Write JSON in File
-				writeFile(dataFile, "data.json")
+				file.WriteFile(dataFile, "data.json")
 				del := ""
 				response, _ := template.New("index").Parse(del)
 				response.Execute(w, map[string]string{"Delete": "OK"})
@@ -211,11 +208,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		for i = 0; i < len(dataFile.DSLAM); i++ {
 			var dslamID = dataFile.DSLAM[i].ID
 			fmt.Println("Update DSLAM " + dslamID)
-			writeStatus(dataFile, dslamID)
+			WD.WriteStatus(dataFile, dslamID)
 			if dataFile.DSLAM[i].Status == "OK" {
 				sessionID := getSSHSession(dataFile, dslamID)
 				if sessionID != "SSH_KO" {
-					writeCard(dataFile, sessionID, dslamID)
+					WD.WriteCard(dataFile, sessionID, dslamID)
 				}
 			}
 		}
@@ -233,7 +230,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			slot := params.Get("slot")
 			portIndex := params.Get("portIndex")
 			sessionID := getSSHSession(dataFile, dslamID)
-			dslam := getDslamByID(dataFile, dslamID)
+			dslam := equipment.GetDslamByID(dataFile, dslamID)
 			var oldService []S.Service
 			for i := 0; i < len(dslam.Card); i++ {
 				if dslam.Card[i].Slot == slot {
@@ -259,36 +256,36 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:35")
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:35 vlan-id 10")
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:35 pvid 10")
-				writeServiceOnePort(dataFile, sessionID, dslamID, portIndex)
+				WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 			} else if oldInternet == false {
 			} else if internet == "true" && oldInternet == true {
 			} else if oldInternet == true {
 				_ = getCommandOut(sessionID, "configure bridge no port "+portIndex+":8:35")
-				writeServiceOnePort(dataFile, sessionID, dslamID, portIndex)
+				WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 			}
 			// Update voip service
 			if voip == "true" && oldVoip == false {
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:36")
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:36 vlan-id 20")
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:36 pvid 20")
-				writeServiceOnePort(dataFile, sessionID, dslamID, portIndex)
+				WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 			} else if oldVoip == false {
 			} else if voip == "true" && oldVoip == true {
 			} else if oldVoip == true {
 				_ = getCommandOut(sessionID, "configure bridge no port "+portIndex+":8:36")
-				writeServiceOnePort(dataFile, sessionID, dslamID, portIndex)
+				WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 			}
 			// Update iptv service
 			if iptv == "true" && oldIptv == false {
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:37")
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:37 vlan-id 30")
 				_ = getCommandOut(sessionID, "configure bridge port "+portIndex+":8:37 pvid 30")
-				writeServiceOnePort(dataFile, sessionID, dslamID, portIndex)
+				WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 			} else if oldIptv == false {
 			} else if iptv == "true" && oldIptv == true {
 			} else if oldIptv == true {
 				_ = getCommandOut(sessionID, "configure bridge no port "+portIndex+":8:37")
-				writeServiceOnePort(dataFile, sessionID, dslamID, portIndex)
+				WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 			}
 
 			for i := 0; i < len(dslam.Card); i++ {
@@ -390,35 +387,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// GET DSLAM By ID in data file
-func getDslamByID(data S.Data, id string) S.DSLAM {
-
-	for i := 0; i < len(data.DSLAM); i++ {
-		if data.DSLAM[i].ID == id {
-			return data.DSLAM[i]
-		}
-	}
-	var null S.DSLAM
-	return null
-
-}
-
-// GET DSLAM Position By ID in data file
-func getDslamPosByID(data S.Data, id string) int {
-
-	for i := 0; i < len(data.DSLAM); i++ {
-		if data.DSLAM[i].ID == id {
-			return i
-		}
-	}
-	return -1
-
-}
-
 // GET SSH Session to connect to DSLAM in data file
 func getSSHSession(dataFile S.Data, id string) string {
 	var dslam S.DSLAM
-	dslam = getDslamByID(dataFile, id)
+	dslam = equipment.GetDslamByID(dataFile, id)
 	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/session", bytes.NewBufferString("{\"user\": \""+dslam.User+"\", \"host\": \""+dslam.Address+"\", \"password\": \""+dslam.Password+"\"}"))
 	req.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
@@ -465,358 +437,4 @@ func getCommandOut(sessionID, command string) []string {
 	}
 
 	return response.CommandOut
-}
-
-// Write DSLAM Status in data File
-func writeStatus(dataFile S.Data, id string) {
-
-	fmt.Println("Write DSLAM Status")
-
-	var oldDSLAM S.DSLAM
-	var newDSLAM S.DSLAM
-
-	dslamPos := getDslamPosByID(dataFile, id)
-	oldDSLAM = getDslamByID(dataFile, id)
-
-	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/session", bytes.NewBufferString("{\"user\": \""+oldDSLAM.User+"\", \"host\": \""+oldDSLAM.Address+"\", \"password\": \""+oldDSLAM.Password+"\"}"))
-	req.Header.Set("Content-Type", "application/json")
-	client := &http.Client{}
-	resp, _ := client.Do(req)
-	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
-
-	var response S.SessionResponse
-	var err = json.Unmarshal(body, &response)
-	if err != nil {
-		fmt.Println("JSON Unmarshal body in writeStatus error:", err)
-	}
-
-	newDSLAM = oldDSLAM
-	newDSLAM.Status = response.Status
-
-	dataFile.DSLAM[dslamPos] = newDSLAM
-
-	writeFile(dataFile, "data.json")
-
-}
-
-// Write Card list of DSLAM in data file
-func writeCard(dataFile S.Data, sessionID, dslamID string) {
-
-	fmt.Println("Update Card")
-
-	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/command", bytes.NewBufferString("{\"sessionID\": \""+sessionID+"\", \"command\": \"show equipment slot xml\"}"))
-	req.Header.Set("Content-Type", "application/json")
-	client := &http.Client{}
-	resp, _ := client.Do(req)
-	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
-
-	bodyS := string(body)
-	bodyS = strings.Replace(bodyS, "\a", "", -1)
-	bodyS = strings.Replace(bodyS, "\x1b", "", -1)
-	bodyS = strings.Replace(bodyS, "-[1D", "", -1)
-	bodyS = strings.Replace(bodyS, "[1D", "", -1)
-	bodyS = strings.Replace(bodyS, "\\ ", " ", -1)
-	bodyS = strings.Replace(bodyS, "\x00", "", -1)
-	body = []byte(bodyS)
-
-	var response S.CommandOut
-	var err = json.Unmarshal(body, &response)
-	if err != nil {
-		fmt.Println("JSON Unmarshal body in writeCard error:", err)
-	}
-
-	var xmlBB bytes.Buffer
-	reXML := regexp.MustCompile("^[\\ \\<]+.*")
-	for _, line := range response.CommandOut {
-		xmlLine := reXML.FindString(line)
-		xmlBB.WriteString(xmlLine)
-	}
-
-	xmlB := []byte(xmlBB.String())
-	var sec S.ShowEquipmentSlot
-
-	err = xml.Unmarshal(xmlB, &sec)
-	if err != nil {
-		fmt.Println("XML Unmarshal xmlB in writeCard error:", err)
-	}
-
-	card := make([]S.Card, len(sec.Card))
-
-	for i := 0; i < len(sec.Card); i++ {
-		card[i].Name = sec.Card[i].Info[0][0].Value
-		card[i].Slot = sec.Card[i].ResID
-		card[i].OperStatus = sec.Card[i].Info[1][0].Value
-		card[i].ErrorStatus = sec.Card[i].Info[2][0].Value
-		card[i].Availability = sec.Card[i].Info[3][0].Value
-	}
-
-	dslam := getDslamByID(dataFile, dslamID)
-	dslam.Card = card
-
-	dslamPos := getDslamPosByID(dataFile, dslamID)
-	dataFile.DSLAM[dslamPos] = dslam
-	writeFile(dataFile, "data.json")
-
-	writePort(dataFile, sessionID, dslamID)
-}
-
-// Write Port List of DSLAM in data file
-func writePort(dataFile S.Data, sessionID, dslamID string) {
-
-	fmt.Println("Update Port")
-
-	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/command", bytes.NewBufferString("{\"sessionID\": \""+sessionID+"\", \"command\": \"show xdsl operational-data line xml\"}"))
-	req.Header.Set("Content-Type", "application/json")
-	client := &http.Client{}
-	resp, _ := client.Do(req)
-	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
-
-	bodyS := string(body)
-	bodyS = strings.Replace(bodyS, "\a", "", -1)
-	bodyS = strings.Replace(bodyS, "\x1b", "", -1)
-	bodyS = strings.Replace(bodyS, "-[1D", "", -1)
-	bodyS = strings.Replace(bodyS, "[1D", "", -1)
-	bodyS = strings.Replace(bodyS, "\\ ", " ", -1)
-	body = []byte(bodyS)
-
-	var response S.CommandOut
-	var err = json.Unmarshal(body, &response)
-	if err != nil {
-		fmt.Println("JSON Unmarshal body in writePort error:", err)
-	}
-
-	var xmlBB bytes.Buffer
-	reXML := regexp.MustCompile("^[\\ \\<]+.*")
-	for _, port := range response.CommandOut {
-		xmlPort := reXML.FindString(port)
-		xmlBB.WriteString(xmlPort)
-	}
-
-	xmlB := []byte(xmlBB.String())
-	var sec S.ShowXdslOperationalDataLine
-
-	err = xml.Unmarshal(xmlB, &sec)
-	if err != nil {
-		fmt.Println("XML Unmarshal xmlB in writeCard error:", err)
-	}
-
-	port := make([]S.Port, len(sec.Port))
-
-	for i := 0; i < len(sec.Port); i++ {
-		port[i].ID = sec.Port[i].ResID
-		port[i].AdmState = sec.Port[i].Info[0][0].Value
-		port[i].OprStateTxRateDs = sec.Port[i].Info[1][0].Value
-		port[i].CurOpMode = sec.Port[i].Info[2][0].Value
-	}
-
-	dslam := getDslamByID(dataFile, dslamID)
-
-	reCardID := regexp.MustCompile("1/1/[0-9]*")
-	var cardID string
-
-	for i := 0; i < len(dslam.Card); i++ {
-		dslam.Card[i].Port = []S.Port{}
-		cardID = reCardID.FindString(dslam.Card[i].Slot)
-		reCardIDPort := regexp.MustCompile("^1/1/[0-9]*")
-		var cardIDPort string
-		for j := 0; j < len(port); j++ {
-			cardIDPort = reCardIDPort.FindString(port[j].ID)
-			if cardID == cardIDPort {
-				dslam.Card[i].Port = append(dslam.Card[i].Port, port[j])
-			}
-		}
-	}
-
-	dslamPos := getDslamPosByID(dataFile, dslamID)
-	dataFile.DSLAM[dslamPos] = dslam
-	writeFile(dataFile, "data.json")
-
-	writeService(dataFile, sessionID, dslamID)
-}
-
-// Write Service List of DSLAM in data file
-func writeService(dataFile S.Data, sessionID, dslamID string) {
-	fmt.Println("Update Service")
-
-	dslam := getDslamByID(dataFile, dslamID)
-
-	for i := 0; i < len(dslam.Card); i++ {
-		if dslam.Card[i].ErrorStatus == "no-error" {
-			for j := 0; j < len(dslam.Card[i].Port); j++ {
-				if dslam.Card[i].Port[j].AdmState == "up" {
-					index := dslam.Card[i].Port[j].ID
-
-					req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/command", bytes.NewBufferString("{\"sessionID\": \""+sessionID+"\", \"command\": \"show xdsl oper-data-port "+index+" bridge-port xml\"}"))
-					req.Header.Set("Content-Type", "application/json")
-					client := &http.Client{}
-					resp, _ := client.Do(req)
-					defer resp.Body.Close()
-					body, _ := ioutil.ReadAll(resp.Body)
-
-					bodyS := string(body)
-					bodyS = strings.Replace(bodyS, "\a", "", -1)
-					bodyS = strings.Replace(bodyS, "\x1b", "", -1)
-					bodyS = strings.Replace(bodyS, "-[1D", "", -1)
-					bodyS = strings.Replace(bodyS, "[1D", "", -1)
-					bodyS = strings.Replace(bodyS, "\\ ", " ", -1)
-					body = []byte(bodyS)
-
-					var response S.CommandOut
-					var err = json.Unmarshal(body, &response)
-					if err != nil {
-						fmt.Println("JSON Unmarshal body in writeService error:", err)
-					}
-
-					var xmlBB bytes.Buffer
-					reXML := regexp.MustCompile("^[\\ \\<]+.*")
-					for _, service := range response.CommandOut {
-						xmlService := reXML.FindString(service)
-						xmlBB.WriteString(xmlService)
-					}
-
-					xmlB := []byte(xmlBB.String())
-					var sec S.ShowXdslOperDataPortIndexBridgePort
-
-					err = xml.Unmarshal(xmlB, &sec)
-					if err != nil {
-						fmt.Println("XML Unmarshal xmlB in writeService error:", err)
-					}
-
-					service := make([]S.Service, len(sec.Service))
-
-					for k := 0; k < len(sec.Service); k++ {
-						service[k].ID = sec.Service[k].ResID
-						service[k].Vlan = sec.Service[k].Parameter[0][0].Value
-					}
-
-					for l := 0; l < len(service); l++ {
-						dslam.Card[i].Port[j].Service = append(dslam.Card[i].Port[j].Service, service[l])
-					}
-
-					dslamPos := getDslamPosByID(dataFile, dslamID)
-					dataFile.DSLAM[dslamPos] = dslam
-					writeFile(dataFile, "data.json")
-				}
-			}
-		}
-	}
-}
-
-// Write Service of One Port in data file when we update service
-func writeServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
-	dslam := getDslamByID(dataFile, dslamID)
-
-	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/command", bytes.NewBufferString("{\"sessionID\": \""+sessionID+"\", \"command\": \"show xdsl oper-data-port "+index+" bridge-port xml\"}"))
-	req.Header.Set("Content-Type", "application/json")
-	client := &http.Client{}
-	resp, _ := client.Do(req)
-	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
-
-	bodyS := string(body)
-	bodyS = strings.Replace(bodyS, "\a", "", -1)
-	bodyS = strings.Replace(bodyS, "\x1b", "", -1)
-	bodyS = strings.Replace(bodyS, "-[1D", "", -1)
-	bodyS = strings.Replace(bodyS, "[1D", "", -1)
-	bodyS = strings.Replace(bodyS, "\\ ", " ", -1)
-	body = []byte(bodyS)
-
-	var response S.CommandOut
-	var err = json.Unmarshal(body, &response)
-	if err != nil {
-		fmt.Println("JSON Unmarshal body in writeService error:", err)
-	}
-
-	var xmlBB bytes.Buffer
-	reXML := regexp.MustCompile("^[\\ \\<]+.*")
-	for _, service := range response.CommandOut {
-		xmlService := reXML.FindString(service)
-		xmlBB.WriteString(xmlService)
-	}
-
-	xmlB := []byte(xmlBB.String())
-	var sec S.ShowXdslOperDataPortIndexBridgePort
-
-	err = xml.Unmarshal(xmlB, &sec)
-	if err != nil {
-		fmt.Println("XML Unmarshal xmlB in writeService error:", err)
-	}
-
-	service := make([]S.Service, len(sec.Service))
-
-	for k := 0; k < len(sec.Service); k++ {
-		service[k].ID = sec.Service[k].ResID
-		service[k].Vlan = sec.Service[k].Parameter[0][0].Value
-	}
-
-	for i := 0; i < len(dslam.Card); i++ {
-		for j := 0; j < len(dslam.Card[i].Port); j++ {
-			if dslam.Card[i].Port[j].ID == index {
-				dslam.Card[i].Port[j].Service = service
-			}
-		}
-	}
-
-	dslamPos := getDslamPosByID(dataFile, dslamID)
-	dataFile.DSLAM[dslamPos] = dslam
-	writeFile(dataFile, "data.json")
-
-	fmt.Println("Data File Updated")
-}
-
-// Write File
-func writeFile(dataFile S.Data, file string) {
-	jsonIndent, _ := json.MarshalIndent(dataFile, "", "\t")
-	key := []byte("nit5i8drod0it1of0en8hylg9ov0out4") // 32 bytes!
-	plaintext := []byte(jsonIndent)
-
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		panic(err)
-	}
-
-	ciphertext := make([]byte, aes.BlockSize+len(plaintext))
-	iv := ciphertext[:aes.BlockSize]
-	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
-		panic(err)
-	}
-
-	stream := cipher.NewCFBEncrypter(block, iv)
-	stream.XORKeyStream(ciphertext[aes.BlockSize:], plaintext)
-
-	ioutil.WriteFile(file, ciphertext, 0777)
-	//readFile(file)
-}
-
-func readFile(file string) S.Data {
-	var ciphertext, _ = ioutil.ReadFile(file)
-
-	key := []byte("nit5i8drod0it1of0en8hylg9ov0out4") // 32 bytes!
-
-	block, err := aes.NewCipher(key)
-	if err != nil {
-		panic(err)
-	}
-
-	if len(ciphertext) < aes.BlockSize {
-		panic("ciphertext too short")
-	}
-	iv := ciphertext[:aes.BlockSize]
-	ciphertext = ciphertext[aes.BlockSize:]
-
-	stream := cipher.NewCFBDecrypter(block, iv)
-
-	stream.XORKeyStream(ciphertext, ciphertext)
-
-	var dataFile S.Data
-	err = json.Unmarshal(ciphertext, &dataFile)
-	if err != nil {
-		fmt.Println("JSON Unmarshal file in indexHandler error:", err)
-	}
-
-	return dataFile
-
 }
