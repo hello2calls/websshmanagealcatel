@@ -19,130 +19,9 @@ import (
 
 	"code.google.com/p/go-uuid/uuid"
 	"github.com/GeertJohan/go.rice"
+
+	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/structures"
 )
-
-// ---------------
-// JSON Structures
-// ---------------
-
-// Service set triple play services
-type Service struct {
-	ID   string `json:"Id"`
-	Vlan string `json:"Vlan"`
-}
-
-// Port define DSLAM ports
-type Port struct {
-	ID               string    `json:"Index"`
-	Name             string    `json:"Name"`
-	AdmState         string    `json:"Adm-State"`
-	OprStateTxRateDs string    `json:"Opr-State/Tx-Rate-Ds"`
-	CurOpMode        string    `json:"Cur-Op-Mode"`
-	Service          []Service `json:"Service"`
-}
-
-// Card define DSLAM card
-type Card struct {
-	Name         string `json:"Name"`
-	Slot         string `json:"Slot"`
-	OperStatus   string `json:"Opers-Status"`
-	ErrorStatus  string `json:"Error-Status"`
-	Availability string `json:"Availability"`
-	Port         []Port `json:"Port"`
-}
-
-// DSLAM define DSLAM
-type DSLAM struct {
-	ID       string `json:"Id"`
-	Name     string `json:"Name"`
-	Status   string `json:"Status"`
-	Address  string `json:"Address"`
-	User     string `json:"User"`
-	Password string `json:"Password"`
-	Card     []Card `json:"Card"`
-}
-
-// Data define
-type Data struct {
-	DSLAM []DSLAM `json:"DSLAM"`
-}
-
-// SessionResponse define session response structure when we establish DSLAM connection
-type SessionResponse struct {
-	ID     string `json:"ID"`
-	Status string `json:"Status"`
-}
-
-// CommandOut define DSLAM return
-type CommandOut struct {
-	CommandOut []string `json:"CommandOut"`
-	ReturnCode string   `json:"ReturnCode"`
-}
-
-// --------------
-// XML Structures
-// --------------
-
-// InfoAttr define XML info of commandOut
-type InfoAttr struct {
-	Name  string `xml:"name,attr"`
-	Value string `xml:",chardata"`
-}
-
-// Parameter define XML parameter of commandOut
-type Parameter struct {
-	Name  string `xml:"name,attr"`
-	Value string `xml:",chardata"`
-}
-
-// Card
-
-// XMLCard define XML DSLAM card struct
-type XMLCard struct {
-	XMLName xml.Name     `xml:"instance"`
-	ResID   string       `xml:"res-id"`
-	Info    [][]InfoAttr `xml:"info"`
-}
-
-// ShowEquipmentSlot Define DSLAM return of command show equipment slot
-type ShowEquipmentSlot struct {
-	XMLName xml.Name  `xml:"runtime-data"`
-	Card    []XMLCard `xml:"hierarchy>hierarchy>hierarchy>instance"`
-}
-
-// Port
-
-// XMLPort define XML DSLAM port struct
-type XMLPort struct {
-	XMLName xml.Name     `xml:"instance"`
-	ResID   string       `xml:"res-id"`
-	Info    [][]InfoAttr `xml:"info"`
-}
-
-// ShowXdslOperationalDataLine Define DSLAM return of command show xdsl operational-data line
-type ShowXdslOperationalDataLine struct {
-	XMLName xml.Name  `xml:"runtime-data"`
-	Port    []XMLPort `xml:"hierarchy>hierarchy>hierarchy>hierarchy>instance"`
-}
-
-// Service
-
-// XMLService define XML DSLAM Service struct
-type XMLService struct {
-	XMLName   xml.Name      `xml:"instance"`
-	ResID     string        `xml:"res-id"`
-	Parameter [][]Parameter `xml:"parameter"`
-}
-
-// ShowXdslOperDataPortIndexBridgePort Define DSLAM return of command show xdsl oper-data-port *Index* bridge-port xml
-type ShowXdslOperDataPortIndexBridgePort struct {
-	XMLName xml.Name     `xml:"runtime-data"`
-	Service []XMLService `xml:"hierarchy>hierarchy>hierarchy>hierarchy>instance"`
-}
-
-// ----
-// Code
-// ----
 
 // Run lunch Website Interface
 func Run() {
@@ -170,7 +49,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	var optionView, _ = viewBox.String("options.tmpl")
 
 	// Read File
-	var dataFile Data
+	var dataFile S.Data
 	dataFile = readFile("data.json")
 
 	switch r.URL.Path {
@@ -237,7 +116,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			response, _ := template.New("option").Parse(option)
 			DSLAMList := ""
 			r.ParseForm()
-			var newDSLAM DSLAM
+			var newDSLAM S.DSLAM
 			newDSLAM.Name = r.Form.Get("name")
 			newDSLAM.Address = r.Form.Get("address")
 			newDSLAM.User = r.Form.Get("user")
@@ -245,7 +124,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			if r.Form.Get("id") != "" {
 				newDSLAM.ID = r.Form.Get("id")
 				dslamPos := getDslamPosByID(dataFile, r.Form.Get("id"))
-				var oldDSLAM DSLAM
+				var oldDSLAM S.DSLAM
 				oldDSLAM = getDslamByID(dataFile, newDSLAM.ID)
 				newDSLAM.ID = r.Form.Get("id")
 				newDSLAM.Card = oldDSLAM.Card
@@ -355,7 +234,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			portIndex := params.Get("portIndex")
 			sessionID := getSSHSession(dataFile, dslamID)
 			dslam := getDslamByID(dataFile, dslamID)
-			var oldService []Service
+			var oldService []S.Service
 			for i := 0; i < len(dslam.Card); i++ {
 				if dslam.Card[i].Slot == slot {
 					for j := 0; j < len(dslam.Card[i].Port); i++ {
@@ -512,20 +391,20 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // GET DSLAM By ID in data file
-func getDslamByID(data Data, id string) DSLAM {
+func getDslamByID(data S.Data, id string) S.DSLAM {
 
 	for i := 0; i < len(data.DSLAM); i++ {
 		if data.DSLAM[i].ID == id {
 			return data.DSLAM[i]
 		}
 	}
-	var null DSLAM
+	var null S.DSLAM
 	return null
 
 }
 
 // GET DSLAM Position By ID in data file
-func getDslamPosByID(data Data, id string) int {
+func getDslamPosByID(data S.Data, id string) int {
 
 	for i := 0; i < len(data.DSLAM); i++ {
 		if data.DSLAM[i].ID == id {
@@ -537,8 +416,8 @@ func getDslamPosByID(data Data, id string) int {
 }
 
 // GET SSH Session to connect to DSLAM in data file
-func getSSHSession(dataFile Data, id string) string {
-	var dslam DSLAM
+func getSSHSession(dataFile S.Data, id string) string {
+	var dslam S.DSLAM
 	dslam = getDslamByID(dataFile, id)
 	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/session", bytes.NewBufferString("{\"user\": \""+dslam.User+"\", \"host\": \""+dslam.Address+"\", \"password\": \""+dslam.Password+"\"}"))
 	req.Header.Set("Content-Type", "application/json")
@@ -547,7 +426,7 @@ func getSSHSession(dataFile Data, id string) string {
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
 
-	var response SessionResponse
+	var response S.SessionResponse
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in getSSHSession error:", err)
@@ -579,7 +458,7 @@ func getCommandOut(sessionID, command string) []string {
 	bodyS = strings.Replace(bodyS, "\\ ", " ", -1)
 	body = []byte(bodyS)
 
-	var response CommandOut
+	var response S.CommandOut
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in getCommandOut error:", err)
@@ -589,12 +468,12 @@ func getCommandOut(sessionID, command string) []string {
 }
 
 // Write DSLAM Status in data File
-func writeStatus(dataFile Data, id string) {
+func writeStatus(dataFile S.Data, id string) {
 
 	fmt.Println("Write DSLAM Status")
 
-	var oldDSLAM DSLAM
-	var newDSLAM DSLAM
+	var oldDSLAM S.DSLAM
+	var newDSLAM S.DSLAM
 
 	dslamPos := getDslamPosByID(dataFile, id)
 	oldDSLAM = getDslamByID(dataFile, id)
@@ -606,7 +485,7 @@ func writeStatus(dataFile Data, id string) {
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
 
-	var response SessionResponse
+	var response S.SessionResponse
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writeStatus error:", err)
@@ -622,7 +501,7 @@ func writeStatus(dataFile Data, id string) {
 }
 
 // Write Card list of DSLAM in data file
-func writeCard(dataFile Data, sessionID, dslamID string) {
+func writeCard(dataFile S.Data, sessionID, dslamID string) {
 
 	fmt.Println("Update Card")
 
@@ -642,7 +521,7 @@ func writeCard(dataFile Data, sessionID, dslamID string) {
 	bodyS = strings.Replace(bodyS, "\x00", "", -1)
 	body = []byte(bodyS)
 
-	var response CommandOut
+	var response S.CommandOut
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writeCard error:", err)
@@ -656,14 +535,14 @@ func writeCard(dataFile Data, sessionID, dslamID string) {
 	}
 
 	xmlB := []byte(xmlBB.String())
-	var sec ShowEquipmentSlot
+	var sec S.ShowEquipmentSlot
 
 	err = xml.Unmarshal(xmlB, &sec)
 	if err != nil {
 		fmt.Println("XML Unmarshal xmlB in writeCard error:", err)
 	}
 
-	card := make([]Card, len(sec.Card))
+	card := make([]S.Card, len(sec.Card))
 
 	for i := 0; i < len(sec.Card); i++ {
 		card[i].Name = sec.Card[i].Info[0][0].Value
@@ -684,7 +563,7 @@ func writeCard(dataFile Data, sessionID, dslamID string) {
 }
 
 // Write Port List of DSLAM in data file
-func writePort(dataFile Data, sessionID, dslamID string) {
+func writePort(dataFile S.Data, sessionID, dslamID string) {
 
 	fmt.Println("Update Port")
 
@@ -703,7 +582,7 @@ func writePort(dataFile Data, sessionID, dslamID string) {
 	bodyS = strings.Replace(bodyS, "\\ ", " ", -1)
 	body = []byte(bodyS)
 
-	var response CommandOut
+	var response S.CommandOut
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writePort error:", err)
@@ -717,14 +596,14 @@ func writePort(dataFile Data, sessionID, dslamID string) {
 	}
 
 	xmlB := []byte(xmlBB.String())
-	var sec ShowXdslOperationalDataLine
+	var sec S.ShowXdslOperationalDataLine
 
 	err = xml.Unmarshal(xmlB, &sec)
 	if err != nil {
 		fmt.Println("XML Unmarshal xmlB in writeCard error:", err)
 	}
 
-	port := make([]Port, len(sec.Port))
+	port := make([]S.Port, len(sec.Port))
 
 	for i := 0; i < len(sec.Port); i++ {
 		port[i].ID = sec.Port[i].ResID
@@ -739,7 +618,7 @@ func writePort(dataFile Data, sessionID, dslamID string) {
 	var cardID string
 
 	for i := 0; i < len(dslam.Card); i++ {
-		dslam.Card[i].Port = []Port{}
+		dslam.Card[i].Port = []S.Port{}
 		cardID = reCardID.FindString(dslam.Card[i].Slot)
 		reCardIDPort := regexp.MustCompile("^1/1/[0-9]*")
 		var cardIDPort string
@@ -759,7 +638,7 @@ func writePort(dataFile Data, sessionID, dslamID string) {
 }
 
 // Write Service List of DSLAM in data file
-func writeService(dataFile Data, sessionID, dslamID string) {
+func writeService(dataFile S.Data, sessionID, dslamID string) {
 	fmt.Println("Update Service")
 
 	dslam := getDslamByID(dataFile, dslamID)
@@ -785,7 +664,7 @@ func writeService(dataFile Data, sessionID, dslamID string) {
 					bodyS = strings.Replace(bodyS, "\\ ", " ", -1)
 					body = []byte(bodyS)
 
-					var response CommandOut
+					var response S.CommandOut
 					var err = json.Unmarshal(body, &response)
 					if err != nil {
 						fmt.Println("JSON Unmarshal body in writeService error:", err)
@@ -799,14 +678,14 @@ func writeService(dataFile Data, sessionID, dslamID string) {
 					}
 
 					xmlB := []byte(xmlBB.String())
-					var sec ShowXdslOperDataPortIndexBridgePort
+					var sec S.ShowXdslOperDataPortIndexBridgePort
 
 					err = xml.Unmarshal(xmlB, &sec)
 					if err != nil {
 						fmt.Println("XML Unmarshal xmlB in writeService error:", err)
 					}
 
-					service := make([]Service, len(sec.Service))
+					service := make([]S.Service, len(sec.Service))
 
 					for k := 0; k < len(sec.Service); k++ {
 						service[k].ID = sec.Service[k].ResID
@@ -827,7 +706,7 @@ func writeService(dataFile Data, sessionID, dslamID string) {
 }
 
 // Write Service of One Port in data file when we update service
-func writeServiceOnePort(dataFile Data, sessionID, dslamID, index string) {
+func writeServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
 	dslam := getDslamByID(dataFile, dslamID)
 
 	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/command", bytes.NewBufferString("{\"sessionID\": \""+sessionID+"\", \"command\": \"show xdsl oper-data-port "+index+" bridge-port xml\"}"))
@@ -845,7 +724,7 @@ func writeServiceOnePort(dataFile Data, sessionID, dslamID, index string) {
 	bodyS = strings.Replace(bodyS, "\\ ", " ", -1)
 	body = []byte(bodyS)
 
-	var response CommandOut
+	var response S.CommandOut
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writeService error:", err)
@@ -859,14 +738,14 @@ func writeServiceOnePort(dataFile Data, sessionID, dslamID, index string) {
 	}
 
 	xmlB := []byte(xmlBB.String())
-	var sec ShowXdslOperDataPortIndexBridgePort
+	var sec S.ShowXdslOperDataPortIndexBridgePort
 
 	err = xml.Unmarshal(xmlB, &sec)
 	if err != nil {
 		fmt.Println("XML Unmarshal xmlB in writeService error:", err)
 	}
 
-	service := make([]Service, len(sec.Service))
+	service := make([]S.Service, len(sec.Service))
 
 	for k := 0; k < len(sec.Service); k++ {
 		service[k].ID = sec.Service[k].ResID
@@ -889,7 +768,7 @@ func writeServiceOnePort(dataFile Data, sessionID, dslamID, index string) {
 }
 
 // Write File
-func writeFile(dataFile Data, file string) {
+func writeFile(dataFile S.Data, file string) {
 	jsonIndent, _ := json.MarshalIndent(dataFile, "", "\t")
 	key := []byte("nit5i8drod0it1of0en8hylg9ov0out4") // 32 bytes!
 	plaintext := []byte(jsonIndent)
@@ -912,7 +791,7 @@ func writeFile(dataFile Data, file string) {
 	//readFile(file)
 }
 
-func readFile(file string) Data {
+func readFile(file string) S.Data {
 	var ciphertext, _ = ioutil.ReadFile(file)
 
 	key := []byte("nit5i8drod0it1of0en8hylg9ov0out4") // 32 bytes!
@@ -932,7 +811,7 @@ func readFile(file string) Data {
 
 	stream.XORKeyStream(ciphertext, ciphertext)
 
-	var dataFile Data
+	var dataFile S.Data
 	err = json.Unmarshal(ciphertext, &dataFile)
 	if err != nil {
 		fmt.Println("JSON Unmarshal file in indexHandler error:", err)
