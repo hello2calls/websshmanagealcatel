@@ -42,7 +42,7 @@ func init() {
 	// register embeddedBox
 	embedded.RegisterEmbeddedBox(`static-files/images`, &embedded.EmbeddedBox{
 		Name: `static-files/images`,
-		Time: time.Unix(1438243270, 0),
+		Time: time.Unix(1441308903, 0),
 		Dirs: map[string]*embedded.EmbeddedDir{
 			"": dirj,
 		},
