@@ -50,9 +50,9 @@ func Get(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		OptionList += "<div class=\"pure-control-group\"><label for=\"user\">Utilisateur</label><input id=\"user\" name=\"user\" type=\"text\" value=" + dataFile.DSLAM[dslamPos].User + "></div>"
 		OptionList += "<div class=\"pure-control-group\"><label for=\"password\">Mot de Passe</label><input id=\"password\" name=\"password\" type=\"password\" value=" + dataFile.DSLAM[dslamPos].Password + "></div>"
 		OptionList += "<input type=\"hidden\" name=\"id\" id=\"id\" value=" + dataFile.DSLAM[dslamPos].ID + ">"
-		OptionList += "<button type=\"submit\" style=\"margin-left:180px\" class=\"pure-button-primary pure-button\">Envoyer</button>"
+		OptionList += "<div class=\"pure-control-group\"><label></label><button type=\"submit\" class=\"pure-button-primary pure-button\">Envoyer</button></div>"
+		OptionList += "<div class=\"pure-control-group\"><label></label><button onclick=\"sendDelete()\" class=\"button-error pure-button\">Supprimer</button></div>"
 		OptionList += "</fieldset></form>"
-		OptionList += "<button onclick=\"sendDelete()\" class=\"button-error pure-button\" style=\"margin-left:180px\">Supprimer</button>"
 	}
 	response.Execute(w, map[string]string{"DSLAMList": DSLAMList, "Options": OptionList})
 }
