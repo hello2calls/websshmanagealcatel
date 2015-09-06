@@ -49,9 +49,21 @@ func Get(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		OptionList += "<div class=\"pure-control-group\"><label for=\"address\">Adresse</label><input id=\"address\" name=\"address\" type=\"text\" value=" + dataFile.DSLAM[dslamPos].Address + "></div>"
 		OptionList += "<div class=\"pure-control-group\"><label for=\"user\">Utilisateur</label><input id=\"user\" name=\"user\" type=\"text\" value=" + dataFile.DSLAM[dslamPos].User + "></div>"
 		OptionList += "<div class=\"pure-control-group\"><label for=\"password\">Mot de Passe</label><input id=\"password\" name=\"password\" type=\"password\" value=" + dataFile.DSLAM[dslamPos].Password + "></div>"
+		OptionList += "<br><div class=\"pure-control-group\"><label>Internet</label></div>"
+		OptionList += "<div class=\"pure-control-group\"><label for=\"internetVlan\">VLAN</label><input id=\"internetVlan\" name=\"internetVlan\" style=\"width:100px\" type=\"number\" max=\"4094\" placeholder=\"VLAN\" value=" + dataFile.DSLAM[dslamPos].Internet.Vlan + ">"
+		OptionList += "<label style=\"width:auto; margin-left:20px\" for=\"internetVpi\">VPI</label><input id=\"internetVpi\" name=\"internetVpi\" style=\"width:100px\" type=\"number\" max=\"255\" placeholder=\"VPI\" value=" + dataFile.DSLAM[dslamPos].Internet.Vpi + ">"
+		OptionList += "<label style=\"width:auto; margin-left:20px\" for=\"internetVci\">VCI</label><input id=\"internetVci\" name=\"internetVci\" style=\"width:100px\" type=\"number\" max=\"65535\" placeholder=\"VCI\" value=" + dataFile.DSLAM[dslamPos].Internet.Vci + "></div>"
+		OptionList += "<br><div class=\"pure-control-group\"><label>Téléphonie</label></div>"
+		OptionList += "<div class=\"pure-control-group\"><label for=\"voipVlan\">VLAN</label><input id=\"voipVlan\" name=\"voipVlan\" style=\"width:100px\" type=\"number\" max=\"4094\" placeholder=\"VLAN\" value=" + dataFile.DSLAM[dslamPos].Telephony.Vlan + ">"
+		OptionList += "<label style=\"width:auto; margin-left:20px\" for=\"voipVpi\">VPI</label><input id=\"voipVpi\" name=\"voipVpi\" style=\"width:100px\" type=\"number\" max=\"255\" placeholder=\"VPI\" value=" + dataFile.DSLAM[dslamPos].Telephony.Vpi + ">"
+		OptionList += "<label style=\"width:auto; margin-left:20px\" for=\"voipVci\">VCI</label><input id=\"voipVci\" name=\"voipVci\" style=\"width:100px\" type=\"number\" max=\"65535\" placeholder=\"VCI\" value=" + dataFile.DSLAM[dslamPos].Telephony.Vci + "></div>"
+		OptionList += "<br><div class=\"pure-control-group\"><label>Vidéo</label></div>"
+		OptionList += "<div class=\"pure-control-group\"><label for=\"videoVlan\">VLAN</label><input id=\"videoVlan\" name=\"videoVlan\" style=\"width:100px\" type=\"number\" max=\"4094\" placeholder=\"VLAN\" value=" + dataFile.DSLAM[dslamPos].Video.Vlan + ">"
+		OptionList += "<label style=\"width:auto; margin-left:20px\" for=\"videoVpi\">VPI</label><input id=\"videoVpi\" name=\"videoVpi\" style=\"width:100px\" type=\"number\" max=\"255\" placeholder=\"VPI\" value=" + dataFile.DSLAM[dslamPos].Video.Vpi + ">"
+		OptionList += "<label style=\"width:auto; margin-left:20px\" for=\"videoVci\">VCI</label><input id=\"videoVci\" name=\"videoVci\" style=\"width:100px\" type=\"number\" max=\"65535\" placeholder=\"VCI\" value=" + dataFile.DSLAM[dslamPos].Video.Vci + "></div>"
 		OptionList += "<input type=\"hidden\" name=\"id\" id=\"id\" value=" + dataFile.DSLAM[dslamPos].ID + ">"
-		OptionList += "<div class=\"pure-control-group\"><label></label><button type=\"submit\" class=\"pure-button-primary pure-button\">Envoyer</button></div>"
-		OptionList += "<div class=\"pure-control-group\"><label></label><button onclick=\"sendDelete()\" class=\"button-error pure-button\">Supprimer</button></div>"
+		OptionList += "<div class=\"pure-control-group pure-u-1-2\"><label></label><button type=\"submit\" class=\"pure-button-primary pure-button\">Envoyer</button></div>"
+		OptionList += "<div class=\"pure-control-group pure-u-1-2\"><label></label><button onclick=\"sendDelete()\" class=\"button-error pure-button\">Supprimer</button></div>"
 		OptionList += "</fieldset></form>"
 	}
 	response.Execute(w, map[string]string{"DSLAMList": DSLAMList, "Options": OptionList})
@@ -70,6 +82,15 @@ func Post(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 	newDSLAM.Address = r.Form.Get("address")
 	newDSLAM.User = r.Form.Get("user")
 	newDSLAM.Password = r.Form.Get("password")
+	newDSLAM.Internet.Vlan = r.Form.Get("internetVlan")
+	newDSLAM.Internet.Vpi = r.Form.Get("internetVpi")
+	newDSLAM.Internet.Vpi = r.Form.Get("internetVpi")
+	newDSLAM.Telephony.Vlan = r.Form.Get("voipVlan")
+	newDSLAM.Telephony.Vpi = r.Form.Get("voipVpi")
+	newDSLAM.Telephony.Vci = r.Form.Get("voipVci")
+	newDSLAM.Video.Vlan = r.Form.Get("videoVlan")
+	newDSLAM.Video.Vpi = r.Form.Get("videoVpi")
+	newDSLAM.Video.Vci = r.Form.Get("videoVci")
 	if r.Form.Get("id") != "" {
 		newDSLAM.ID = r.Form.Get("id")
 		dslamPos := equipment.GetDslamPosByID(dataFile, r.Form.Get("id"))

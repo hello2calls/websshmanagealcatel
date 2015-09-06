@@ -6,6 +6,8 @@ import "encoding/xml"
 type Service struct {
 	ID   string `json:"Id"`
 	Vlan string `json:"Vlan"`
+	Vpi  string `json:"Vpi"`
+	Vci  string `json:"Vci"`
 }
 
 // Port define DSLAM ports
@@ -30,13 +32,16 @@ type Card struct {
 
 // DSLAM define DSLAM
 type DSLAM struct {
-	ID       string `json:"Id"`
-	Name     string `json:"Name"`
-	Status   string `json:"Status"`
-	Address  string `json:"Address"`
-	User     string `json:"User"`
-	Password string `json:"Password"`
-	Card     []Card `json:"Card"`
+	ID        string  `json:"Id"`
+	Name      string  `json:"Name"`
+	Status    string  `json:"Status"`
+	Address   string  `json:"Address"`
+	User      string  `json:"User"`
+	Password  string  `json:"Password"`
+	Card      []Card  `json:"Card"`
+	Internet  Service `json:"Internet"`
+	Telephony Service `json:"Telephony"`
+	Video     Service `json:"Video"`
 }
 
 // Licence define Licence

@@ -65,6 +65,16 @@ func Services(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		dslamID := params.Get("dslamID")
 		slot := params.Get("slot")
 		portIndex := params.Get("portIndex")
+		dslamPos := equipment.GetDslamPosByID(dataFile, dslamID)
+		internetVlan := dataFile.DSLAM[dslamPos].Internet.Vlan
+		internetVpi := dataFile.DSLAM[dslamPos].Internet.Vpi
+		internetVci := dataFile.DSLAM[dslamPos].Internet.Vci
+		voipVlan := dataFile.DSLAM[dslamPos].Telephony.Vlan
+		voipVpi := dataFile.DSLAM[dslamPos].Telephony.Vpi
+		voipVci := dataFile.DSLAM[dslamPos].Telephony.Vci
+		videoVlan := dataFile.DSLAM[dslamPos].Video.Vlan
+		videoVpi := dataFile.DSLAM[dslamPos].Video.Vpi
+		videoVci := dataFile.DSLAM[dslamPos].Video.Vci
 		sessionID := sshsession.Get(dataFile, dslamID)
 		dslam := equipment.GetDslamByID(dataFile, dslamID)
 		var oldService []S.Service
@@ -89,38 +99,38 @@ func Services(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		}
 		// Update internet service
 		if internet == "true" && oldInternet == false {
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:35")
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:35 vlan-id 10")
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:35 pvid 10")
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+internetVpi+":"+internetVci)
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+internetVpi+":"+internetVci+" vlan-id "+internetVlan)
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+internetVpi+":"+internetVci+" pvid "+internetVlan)
 			WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 		} else if oldInternet == false {
 		} else if internet == "true" && oldInternet == true {
 		} else if oldInternet == true {
-			command.Set(sessionID, "configure bridge no port "+portIndex+":8:35")
+			command.Set(sessionID, "configure bridge no port "+portIndex+":"+internetVpi+":"+internetVci)
 			WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 		}
 		// Update voip service
 		if voip == "true" && oldVoip == false {
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:36")
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:36 vlan-id 20")
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:36 pvid 20")
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+voipVpi+":"+voipVci)
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+voipVpi+":"+voipVci+" vlan-id "+voipVlan)
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+voipVpi+":"+voipVci+" pvid "+voipVlan)
 			WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 		} else if oldVoip == false {
 		} else if voip == "true" && oldVoip == true {
 		} else if oldVoip == true {
-			command.Set(sessionID, "configure bridge no port "+portIndex+":8:36")
+			command.Set(sessionID, "configure bridge no port "+portIndex+":"+voipVpi+":"+voipVci)
 			WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 		}
 		// Update iptv service
 		if iptv == "true" && oldIptv == false {
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:37")
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:37 vlan-id 30")
-			command.Set(sessionID, "configure bridge port "+portIndex+":8:37 pvid 30")
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+videoVpi+":"+videoVci)
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+videoVpi+":"+videoVci+" vlan-id "+videoVlan)
+			command.Set(sessionID, "configure bridge port "+portIndex+":"+videoVpi+":"+videoVci+" pvid "+videoVlan)
 			WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 		} else if oldIptv == false {
 		} else if iptv == "true" && oldIptv == true {
 		} else if oldIptv == true {
-			command.Set(sessionID, "configure bridge no port "+portIndex+":8:37")
+			command.Set(sessionID, "configure bridge no port "+portIndex+":"+videoVpi+":"+videoVci)
 			WD.WriteServiceOnePort(dataFile, sessionID, dslamID, portIndex)
 		}
 
