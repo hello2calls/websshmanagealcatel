@@ -30,6 +30,8 @@ window.onload = function() {
 		xmlhttp2.onreadystatechange=function()
 		{
 			if (xmlhttp2.readyState==4 && xmlhttp2.status==200) {
+				data = JSON.parse(xmlhttp2.responseText);
+				console.log(data);
 				document.getElementById('loader').style.display = "none";
 			}
 		};

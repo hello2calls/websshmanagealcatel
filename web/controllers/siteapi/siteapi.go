@@ -10,6 +10,7 @@ import (
 
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/command"
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/equipment"
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/file"
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/sshsession"
 	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/structures"
 	WD "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/writeData"
@@ -51,7 +52,10 @@ func Update(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		}
 	}
 	fmt.Println("Data File Updated")
-	w.Write([]byte("OK"))
+	// Read File
+	dataFile = file.ReadFile("data.json")
+	data, _ := json.MarshalIndent(dataFile, "", "\t")
+	w.Write(data)
 }
 
 // Services update services on DSLAM with post informations (interface name, internet, voip, iptv)
@@ -89,11 +93,11 @@ func Services(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		}
 		oldInternet, oldVoip, oldIptv := false, false, false
 		for k := 0; k < len(oldService); k++ {
-			if oldService[k].Vlan == "10" {
+			if oldService[k].Vlan == dataFile.DSLAM[dslamPos].Internet.Vlan {
 				oldInternet = true
-			} else if oldService[k].Vlan == "20" {
+			} else if oldService[k].Vlan == dataFile.DSLAM[dslamPos].Telephony.Vlan {
 				oldVoip = true
-			} else if oldService[k].Vlan == "30" {
+			} else if oldService[k].Vlan == dataFile.DSLAM[dslamPos].Video.Vlan {
 				oldIptv = true
 			}
 		}

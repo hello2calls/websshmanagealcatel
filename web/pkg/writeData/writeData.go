@@ -73,6 +73,7 @@ func WriteCard(dataFile S.Data, sessionID, dslamID string) {
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writeCard error:", err)
+		fmt.Println(bodyS)
 	}
 
 	var xmlBB bytes.Buffer
@@ -88,6 +89,7 @@ func WriteCard(dataFile S.Data, sessionID, dslamID string) {
 	err = xml.Unmarshal(xmlB, &sec)
 	if err != nil {
 		fmt.Println("XML Unmarshal xmlB in writeCard error:", err)
+		fmt.Println(bodyS)
 	}
 
 	card := make([]S.Card, len(sec.Card))
@@ -134,6 +136,7 @@ func WritePort(dataFile S.Data, sessionID, dslamID string) {
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writePort error:", err)
+		fmt.Println(bodyS)
 	}
 
 	var xmlBB bytes.Buffer
@@ -148,7 +151,8 @@ func WritePort(dataFile S.Data, sessionID, dslamID string) {
 
 	err = xml.Unmarshal(xmlB, &sec)
 	if err != nil {
-		fmt.Println("XML Unmarshal xmlB in writeCard error:", err)
+		fmt.Println("XML Unmarshal xmlB in writePort error:", err)
+		fmt.Println(bodyS)
 	}
 
 	port := make([]S.Port, len(sec.Port))
@@ -216,6 +220,7 @@ func WriteAllServices(dataFile S.Data, sessionID, dslamID string) {
 					var err = json.Unmarshal(body, &response)
 					if err != nil {
 						fmt.Println("JSON Unmarshal body in writeService error:", err)
+						fmt.Println(bodyS)
 					}
 
 					var xmlBB bytes.Buffer
@@ -231,6 +236,7 @@ func WriteAllServices(dataFile S.Data, sessionID, dslamID string) {
 					err = xml.Unmarshal(xmlB, &sec)
 					if err != nil {
 						fmt.Println("XML Unmarshal xmlB in writeService error:", err)
+						fmt.Println(bodyS)
 					}
 
 					service := make([]S.Service, len(sec.Service))
@@ -276,6 +282,7 @@ func WriteServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writeService error:", err)
+		fmt.Println(bodyS)
 	}
 
 	var xmlBB bytes.Buffer
@@ -291,6 +298,7 @@ func WriteServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
 	err = xml.Unmarshal(xmlB, &sec)
 	if err != nil {
 		fmt.Println("XML Unmarshal xmlB in writeService error:", err)
+		fmt.Println(bodyS)
 	}
 
 	service := make([]S.Service, len(sec.Service))
