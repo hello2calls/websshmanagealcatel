@@ -84,7 +84,7 @@ func Post(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 	newDSLAM.Password = r.Form.Get("password")
 	newDSLAM.Internet.Vlan = r.Form.Get("internetVlan")
 	newDSLAM.Internet.Vpi = r.Form.Get("internetVpi")
-	newDSLAM.Internet.Vpi = r.Form.Get("internetVpi")
+	newDSLAM.Internet.Vci = r.Form.Get("internetVci")
 	newDSLAM.Telephony.Vlan = r.Form.Get("voipVlan")
 	newDSLAM.Telephony.Vpi = r.Form.Get("voipVpi")
 	newDSLAM.Telephony.Vci = r.Form.Get("voipVci")
