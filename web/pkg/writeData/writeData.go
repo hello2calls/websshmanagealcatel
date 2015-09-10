@@ -46,6 +46,12 @@ func WriteStatus(dataFile S.Data, id string) {
 
 	file.WriteFile(dataFile, "data.json")
 
+	reqBis, _ := http.NewRequest("DELETE", "http://127.0.0.1:8080/API/session", bytes.NewBufferString("{\"ID\": \""+response.ID+"\"}"))
+	reqBis.Header.Set("Content-Type", "application/json")
+	clientBis := &http.Client{}
+	respBis, _ := clientBis.Do(reqBis)
+	defer respBis.Body.Close()
+
 }
 
 // WriteCard write all DSLAM Card
@@ -297,7 +303,7 @@ func WriteServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
 
 	err = xml.Unmarshal(xmlB, &sec)
 	if err != nil {
-		fmt.Println("XML Unmarshal xmlB in writeService error:", err)
+		fmt.Println("XML Unmarshal xmlB in writeServiceOnePort error:", err)
 		fmt.Println(bodyS)
 	}
 

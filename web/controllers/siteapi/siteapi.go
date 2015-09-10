@@ -16,6 +16,7 @@ import (
 	WD "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/writeData"
 
 	"github.com/GeertJohan/go.rice"
+	"github.com/gorilla/sessions"
 )
 
 var templateBox, _ = rice.FindBox("../../templates")
@@ -38,23 +39,32 @@ func All(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 
 // Update data file on server (with real information -> SSH)
 func Update(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
-	w.Header().Set("Content-Type", "application/json")
+	var store = sessions.NewCookieStore([]byte("secretReseautel"))
+	session, _ := store.Get(r, "sessionCookie")
+	session.Options = &sessions.Options{MaxAge: 3600}
 	i := 0
 	for i = 0; i < len(dataFile.DSLAM); i++ {
 		var dslamID = dataFile.DSLAM[i].ID
+		if session.Values[dslamID] == nil {
+			session.Values[dslamID] = sshsession.Get(dataFile, dataFile.DSLAM[i].ID)
+			session.Save(r, w)
+		} else {
+			if command.GetOut(session.Values[dslamID].(string), "show session")[0] == "" || command.GetOut(session.Values[dslamID].(string), "show session")[0] == "Session ID not exist" {
+				session.Values[dslamID] = sshsession.Get(dataFile, dataFile.DSLAM[i].ID)
+				session.Save(r, w)
+			}
+		}
 		fmt.Println("Update DSLAM " + dslamID)
 		WD.WriteStatus(dataFile, dslamID)
 		if dataFile.DSLAM[i].Status == "OK" {
-			sessionID := sshsession.Get(dataFile, dslamID)
-			if sessionID != "SSH_KO" {
-				WD.WriteCard(dataFile, sessionID, dslamID)
-			}
+			WD.WriteCard(dataFile, session.Values[dslamID].(string), dslamID)
 		}
 	}
 	fmt.Println("Data File Updated")
 	// Read File
 	dataFile = file.ReadFile("data.json")
 	data, _ := json.MarshalIndent(dataFile, "", "\t")
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(data)
 }
 
@@ -79,7 +89,13 @@ func Services(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		videoVlan := dataFile.DSLAM[dslamPos].Video.Vlan
 		videoVpi := dataFile.DSLAM[dslamPos].Video.Vpi
 		videoVci := dataFile.DSLAM[dslamPos].Video.Vci
-		sessionID := sshsession.Get(dataFile, dslamID)
+		//Check if session is always open
+		var sessionID string
+		var store = sessions.NewCookieStore([]byte("secretReseautel"))
+		session, _ := store.Get(r, "sessionCookie")
+		session.Options = &sessions.Options{MaxAge: 3600}
+		sessionID = session.Values[dslamID].(string)
+		fmt.Println(sessionID)
 		dslam := equipment.GetDslamByID(dataFile, dslamID)
 		var oldService []S.Service
 		for i := 0; i < len(dslam.Card); i++ {
@@ -178,5 +194,14 @@ func Command(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		w.Write([]byte("{\"commandOut\": " + out + "}"))
 	} else {
 		w.Write([]byte("Need Session ID and Command"))
+	}
+}
+
+// DeleteSession send commande to DSLAM
+func DeleteSession(w http.ResponseWriter, r *http.Request) {
+	if r.URL.RawQuery != "" {
+		re := regexp.MustCompile("[a-z0-9\\-]*$")
+		sessionID := re.FindString(r.URL.RawQuery)
+		sshsession.Delete(sessionID)
 	}
 }

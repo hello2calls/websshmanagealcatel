@@ -98,6 +98,12 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	// Send commande to DSLAM
 	case "/SITEAPI/command":
 		siteapi.Command(w, r, dataFile)
+	case "/SITEAPI/session":
+		switch r.Method {
+		// GET DSLAM Informations when we are in option page
+		case "DELETE":
+			siteapi.DeleteSession(w, r)
+		}
 
 	// Static Files
 	case "/css/pure-min.css":

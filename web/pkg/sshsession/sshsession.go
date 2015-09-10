@@ -36,3 +36,21 @@ func Get(dataFile S.Data, id string) string {
 	}
 	return status
 }
+
+// Delete to unconnect to DSLAM
+func Delete(id string) string {
+	req, _ := http.NewRequest("DELETE", "http://127.0.0.1:8080/API/session", bytes.NewBufferString("{\"ID\": \""+id+"\"}"))
+	req.Header.Set("Content-Type", "application/json")
+	client := &http.Client{}
+	resp, _ := client.Do(req)
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+
+	var response S.SessionResponse
+	var err = json.Unmarshal(body, &response)
+	if err != nil {
+		fmt.Println("JSON Unmarshal body in getSSHSession error:", err)
+	}
+
+	return "Removed"
+}

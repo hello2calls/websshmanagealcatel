@@ -1,37 +1,20 @@
 // Global Variables
-var sessionId;
 var data;
 
 window.onload = function() {
 	if (window.location.pathname == "/index" || window.location.pathname == "/") {
-		// Ask JSON Data File
-		xmlhttp = new XMLHttpRequest();
-		var url = "/SITEAPI/all";
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
-		document.getElementById('loader').style.display = "inline-block";
-		xmlhttp.onreadystatechange=function() {
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				data = JSON.parse(xmlhttp.responseText);
-				console.log(data);
-				if (data.DSLAM.length === 0) {
-					document.location.href="option";
-				} else {
-					displayDslam();
-				}
-			}
-		};
 		// Update JSON Data File on Server
 		xmlhttp2 = new XMLHttpRequest();
 		var url2 = "/SITEAPI/update";
 		xmlhttp2.open("GET", url2, true);
 		xmlhttp2.send();
+		document.getElementById('loader').style.display = "inline-block";
 		xmlhttp2.onreadystatechange=function()
 		{
 			if (xmlhttp2.readyState==4 && xmlhttp2.status==200) {
 				data = JSON.parse(xmlhttp2.responseText);
 				console.log(data);
+				displayDslam();
 				document.getElementById('loader').style.display = "none";
 			}
 		};
