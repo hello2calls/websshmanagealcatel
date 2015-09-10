@@ -303,7 +303,11 @@ func WriteServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
 
 	err = xml.Unmarshal(xmlB, &sec)
 	if err != nil {
+<<<<<<< HEAD
 		fmt.Println("XML Unmarshal xmlB in writeServiceOnePort error:", err)
+=======
+		fmt.Println("XML Unmarshal xmlB in writeService error:", err)
+>>>>>>> 4a63e4a2ae8545624741a7207a685e797ff93859
 		fmt.Println(bodyS)
 	}
 

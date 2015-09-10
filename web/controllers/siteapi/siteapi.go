@@ -64,7 +64,10 @@ func Update(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 	// Read File
 	dataFile = file.ReadFile("data.json")
 	data, _ := json.MarshalIndent(dataFile, "", "\t")
+<<<<<<< HEAD
 	w.Header().Set("Content-Type", "application/json")
+=======
+>>>>>>> 4a63e4a2ae8545624741a7207a685e797ff93859
 	w.Write(data)
 }
 
@@ -89,6 +92,7 @@ func Services(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		videoVlan := dataFile.DSLAM[dslamPos].Video.Vlan
 		videoVpi := dataFile.DSLAM[dslamPos].Video.Vpi
 		videoVci := dataFile.DSLAM[dslamPos].Video.Vci
+<<<<<<< HEAD
 		//Check if session is always open
 		var sessionID string
 		var store = sessions.NewCookieStore([]byte("secretReseautel"))
@@ -96,6 +100,9 @@ func Services(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		session.Options = &sessions.Options{MaxAge: 3600}
 		sessionID = session.Values[dslamID].(string)
 		fmt.Println(sessionID)
+=======
+		sessionID := sshsession.Get(dataFile, dslamID)
+>>>>>>> 4a63e4a2ae8545624741a7207a685e797ff93859
 		dslam := equipment.GetDslamByID(dataFile, dslamID)
 		var oldService []S.Service
 		for i := 0; i < len(dslam.Card); i++ {

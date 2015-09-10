@@ -14,7 +14,10 @@ window.onload = function() {
 			if (xmlhttp2.readyState==4 && xmlhttp2.status==200) {
 				data = JSON.parse(xmlhttp2.responseText);
 				console.log(data);
+<<<<<<< HEAD
 				displayDslam();
+=======
+>>>>>>> 4a63e4a2ae8545624741a7207a685e797ff93859
 				document.getElementById('loader').style.display = "none";
 			}
 		};
