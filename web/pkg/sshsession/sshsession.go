@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/equipment"
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/logger"
 	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/structures"
 )
 
@@ -26,6 +27,7 @@ func Get(dataFile S.Data, id string) string {
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in getSSHSession error:", err)
+		logger.Print("JSON Unmarshal body in getSSHSession error:", err)
 	}
 
 	var status string
@@ -50,6 +52,7 @@ func Delete(id string) string {
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in getSSHSession error:", err)
+		logger.Print("JSON Unmarshal body in getSSHSession error:", err)
 	}
 
 	return "Removed"

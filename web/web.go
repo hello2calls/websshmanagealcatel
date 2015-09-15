@@ -12,6 +12,7 @@ import (
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/controllers/siteapi"
 
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/file"
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/logger"
 	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/structures"
 )
 
@@ -19,6 +20,7 @@ import (
 func Run() {
 
 	fmt.Println("WebSite Lunched")
+	logger.Print("WebSite Lunched", nil)
 
 	// When Client ask /
 	http.HandleFunc("/", indexHandler)

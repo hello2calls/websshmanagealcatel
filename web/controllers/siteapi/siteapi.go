@@ -2,7 +2,6 @@ package siteapi
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/url"
 	"regexp"
@@ -11,6 +10,7 @@ import (
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/command"
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/equipment"
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/file"
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/logger"
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/sshsession"
 	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/structures"
 	WD "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/writeData"
@@ -54,13 +54,13 @@ func Update(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 				session.Save(r, w)
 			}
 		}
-		fmt.Println("Update DSLAM " + dslamID)
+		logger.Print("Update DSLAM "+dslamID, nil)
 		WD.WriteStatus(dataFile, dslamID)
 		if dataFile.DSLAM[i].Status == "OK" {
 			WD.WriteCard(dataFile, session.Values[dslamID].(string), dslamID)
 		}
 	}
-	fmt.Println("Data File Updated")
+	logger.Print("Data File Updated", nil)
 	// Read File
 	dataFile = file.ReadFile("data.json")
 	data, _ := json.MarshalIndent(dataFile, "", "\t")
@@ -95,7 +95,6 @@ func Services(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 		session, _ := store.Get(r, "sessionCookie")
 		session.Options = &sessions.Options{MaxAge: 3600}
 		sessionID = session.Values[dslamID].(string)
-		fmt.Println(sessionID)
 		dslam := equipment.GetDslamByID(dataFile, dslamID)
 		var oldService []S.Service
 		for i := 0; i < len(dslam.Card); i++ {

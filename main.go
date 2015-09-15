@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web"
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/logger"
 	"bitbucket.org/nmontes/sshapi/api"
 	"github.com/skratchdot/open-golang/open"
 )
@@ -12,6 +13,7 @@ import (
 func main() {
 
 	fmt.Println("WebServer Listen on all interfaces, port 8080")
+	logger.Print("WebServer Listen on all interfaces, port 8080", nil)
 
 	// RUN API
 	SSHAPI.Run()

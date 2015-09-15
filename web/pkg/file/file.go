@@ -9,6 +9,7 @@ import (
 	"io"
 	"io/ioutil"
 
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/logger"
 	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/structures"
 )
 
@@ -60,6 +61,7 @@ func ReadFile(file string) S.Data {
 	err = json.Unmarshal(ciphertext, &dataFile)
 	if err != nil {
 		fmt.Println("JSON Unmarshal file in indexHandler error:", err)
+		logger.Print("JSON Unmarshal file in indexHandler error:", err)
 	}
 
 	return dataFile

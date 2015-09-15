@@ -12,13 +12,14 @@ import (
 
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/equipment"
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/file"
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/logger"
 	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/structures"
 )
 
 // WriteStatus write card status
 func WriteStatus(dataFile S.Data, id string) {
 
-	fmt.Println("Write DSLAM Status")
+	logger.Print("Write DSLAM Status", nil)
 
 	var oldDSLAM S.DSLAM
 	var newDSLAM S.DSLAM
@@ -37,6 +38,7 @@ func WriteStatus(dataFile S.Data, id string) {
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writeStatus error:", err)
+		logger.Print("JSON Unmarshal body in writeStatus error", err)
 	}
 
 	newDSLAM = oldDSLAM
@@ -57,7 +59,7 @@ func WriteStatus(dataFile S.Data, id string) {
 // WriteCard write all DSLAM Card
 func WriteCard(dataFile S.Data, sessionID, dslamID string) {
 
-	fmt.Println("Update Card")
+	logger.Print("Update Card", nil)
 
 	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/command", bytes.NewBufferString("{\"sessionID\": \""+sessionID+"\", \"command\": \"show equipment slot xml\"}"))
 	req.Header.Set("Content-Type", "application/json")
@@ -80,6 +82,8 @@ func WriteCard(dataFile S.Data, sessionID, dslamID string) {
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writeCard error:", err)
 		fmt.Println(bodyS)
+		logger.Print("JSON Unmarshal body in writeCard error:", err)
+		logger.Print(bodyS, nil)
 	}
 
 	var xmlBB bytes.Buffer
@@ -96,6 +100,8 @@ func WriteCard(dataFile S.Data, sessionID, dslamID string) {
 	if err != nil {
 		fmt.Println("XML Unmarshal xmlB in writeCard error:", err)
 		fmt.Println(bodyS)
+		logger.Print("XML Unmarshal xmlB in writeCard error:", err)
+		logger.Print(bodyS, nil)
 	}
 
 	card := make([]S.Card, len(sec.Card))
@@ -121,7 +127,7 @@ func WriteCard(dataFile S.Data, sessionID, dslamID string) {
 // WritePort write all DSLAM port
 func WritePort(dataFile S.Data, sessionID, dslamID string) {
 
-	fmt.Println("Update Port")
+	logger.Print("Update Port", nil)
 
 	req, _ := http.NewRequest("POST", "http://127.0.0.1:8080/API/command", bytes.NewBufferString("{\"sessionID\": \""+sessionID+"\", \"command\": \"show xdsl operational-data line xml\"}"))
 	req.Header.Set("Content-Type", "application/json")
@@ -143,6 +149,8 @@ func WritePort(dataFile S.Data, sessionID, dslamID string) {
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writePort error:", err)
 		fmt.Println(bodyS)
+		logger.Print("JSON Unmarshal body in writePort error:", err)
+		logger.Print(bodyS, nil)
 	}
 
 	var xmlBB bytes.Buffer
@@ -159,6 +167,8 @@ func WritePort(dataFile S.Data, sessionID, dslamID string) {
 	if err != nil {
 		fmt.Println("XML Unmarshal xmlB in writePort error:", err)
 		fmt.Println(bodyS)
+		logger.Print("XML Unmarshal xmlB in writePort error:", err)
+		logger.Print(bodyS, nil)
 	}
 
 	port := make([]S.Port, len(sec.Port))
@@ -197,7 +207,8 @@ func WritePort(dataFile S.Data, sessionID, dslamID string) {
 
 // WriteAllServices write all port services
 func WriteAllServices(dataFile S.Data, sessionID, dslamID string) {
-	fmt.Println("Update Service")
+
+	logger.Print("Update Service", nil)
 
 	dslam := equipment.GetDslamByID(dataFile, dslamID)
 
@@ -227,6 +238,8 @@ func WriteAllServices(dataFile S.Data, sessionID, dslamID string) {
 					if err != nil {
 						fmt.Println("JSON Unmarshal body in writeService error:", err)
 						fmt.Println(bodyS)
+						logger.Print("JSON Unmarshal body in writeService error:", err)
+						logger.Print(bodyS, nil)
 					}
 
 					var xmlBB bytes.Buffer
@@ -243,6 +256,8 @@ func WriteAllServices(dataFile S.Data, sessionID, dslamID string) {
 					if err != nil {
 						fmt.Println("XML Unmarshal xmlB in writeService error:", err)
 						fmt.Println(bodyS)
+						logger.Print("XML Unmarshal xmlB in writeService error:", err)
+						logger.Print(bodyS, nil)
 					}
 
 					service := make([]S.Service, len(sec.Service))
@@ -289,6 +304,8 @@ func WriteServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in writeService error:", err)
 		fmt.Println(bodyS)
+		logger.Print("JSON Unmarshal body in writeService error:", err)
+		logger.Print(bodyS, err)
 	}
 
 	var xmlBB bytes.Buffer
@@ -305,6 +322,8 @@ func WriteServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
 	if err != nil {
 		fmt.Println("XML Unmarshal xmlB in writeServiceOnePort error:", err)
 		fmt.Println(bodyS)
+		logger.Print("XML Unmarshal xmlB in writeServiceOnePort error:", err)
+		logger.Print(bodyS, nil)
 	}
 
 	service := make([]S.Service, len(sec.Service))
@@ -326,5 +345,5 @@ func WriteServiceOnePort(dataFile S.Data, sessionID, dslamID, index string) {
 	dataFile.DSLAM[dslamPos] = dslam
 	file.WriteFile(dataFile, "data.json")
 
-	fmt.Println("Data File Updated")
+	logger.Print("Data File Updated", nil)
 }

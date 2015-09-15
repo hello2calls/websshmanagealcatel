@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strings"
 
+	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/logger"
 	S "bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/structures"
 )
 
@@ -32,6 +33,7 @@ func GetOut(sessionID, command string) []string {
 	var err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Println("JSON Unmarshal body in getCommandOut error:", err)
+		logger.Print("JSON Unmarshal body in getCommandOut error:", err)
 	}
 
 	return response.CommandOut
