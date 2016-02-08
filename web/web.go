@@ -156,8 +156,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		response, _ := imageBox.String("3587308442_ce1c047329_o.jpg")
 		w.Header().Set("Content-Type", "image/jpg")
 		w.Write([]byte(response))
-	case "/mitel.png":
-		response, _ := imageBox.String("mitel.png")
+	case "/logo.png":
+		response, _ := imageBox.String("logo.png")
 		w.Header().Set("Content-Type", "image/png")
 		w.Write([]byte(response))
 	default:

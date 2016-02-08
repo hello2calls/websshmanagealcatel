@@ -1,336 +1,51 @@
-
-2015/09/13 18:27:31 Write DSLAM Status
-2015/09/13 18:27:34 Update Card
-2015/09/13 18:27:47 Update Port
-2015/09/13 18:28:21 Update Service
-2015/09/13 18:28:22 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:22 {"CommandOut" : [""]}
-2015/09/13 18:28:23 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:23 {"CommandOut" : [""]}
-2015/09/13 18:28:24 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:24 {"CommandOut" : [""]}
-2015/09/13 18:28:25 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:25 {"CommandOut" : [""]}
-2015/09/13 18:28:26 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:26 {"CommandOut" : [""]}
-2015/09/13 18:28:27 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:27 {"CommandOut" : [""]}
-2015/09/13 18:28:28 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:28 {"CommandOut" : [""]}
-2015/09/13 18:28:29 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:29 {"CommandOut" : [""]}
-2015/09/13 18:28:30 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:30 {"CommandOut" : [""]}
-2015/09/13 18:28:31 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:31 {"CommandOut" : [""]}
-2015/09/13 18:28:32 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:32 {"CommandOut" : [""]}
-2015/09/13 18:28:33 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:33 {"CommandOut" : [""]}
-2015/09/13 18:28:34 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:34 {"CommandOut" : [""]}
-2015/09/13 18:28:35 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:35 {"CommandOut" : [""]}
-2015/09/13 18:28:36 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:36 {"CommandOut" : [""]}
-2015/09/13 18:28:37 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:37 {"CommandOut" : [""]}
-2015/09/13 18:28:38 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:38 {"CommandOut" : [""]}
-2015/09/13 18:28:39 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:39 {"CommandOut" : [""]}
-2015/09/13 18:28:40 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:40 {"CommandOut" : [""]}
-2015/09/13 18:28:41 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:41 {"CommandOut" : [""]}
-2015/09/13 18:28:42 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:42 {"CommandOut" : [""]}
-2015/09/13 18:28:43 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:43 {"CommandOut" : [""]}
-2015/09/13 18:28:44 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:44 {"CommandOut" : [""]}
-2015/09/13 18:28:45 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:45 {"CommandOut" : [""]}
-2015/09/13 18:28:46 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:46 {"CommandOut" : [""]}
-2015/09/13 18:28:47 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:47 {"CommandOut" : [""]}
-2015/09/13 18:28:48 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:48 {"CommandOut" : [""]}
-2015/09/13 18:28:49 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:49 {"CommandOut" : [""]}
-2015/09/13 18:28:50 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:50 {"CommandOut" : [""]}
-2015/09/13 18:28:51 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:51 {"CommandOut" : [""]}
-2015/09/13 18:28:52 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:52 {"CommandOut" : [""]}
-2015/09/13 18:28:53 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:53 {"CommandOut" : [""]}
-2015/09/13 18:28:54 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:54 {"CommandOut" : [""]}
-2015/09/13 18:28:55 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:55 {"CommandOut" : [""]}
-2015/09/13 18:28:56 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:56 {"CommandOut" : [""]}
-2015/09/13 18:28:57 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:57 {"CommandOut" : [""]}
-2015/09/13 18:28:58 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:58 {"CommandOut" : [""]}
-2015/09/13 18:28:59 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:28:59 {"CommandOut" : [""]}
-2015/09/13 18:29:00 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:00 {"CommandOut" : [""]}
-2015/09/13 18:29:01 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:01 {"CommandOut" : [""]}
-2015/09/13 18:29:02 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:02 {"CommandOut" : [""]}
-2015/09/13 18:29:03 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:03 {"CommandOut" : [""]}
-2015/09/13 18:29:04 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:04 {"CommandOut" : [""]}
-2015/09/13 18:29:05 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:05 {"CommandOut" : [""]}
-2015/09/13 18:29:06 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:06 {"CommandOut" : [""]}
-2015/09/13 18:29:07 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:07 {"CommandOut" : [""]}
-2015/09/13 18:29:08 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:08 {"CommandOut" : [""]}
-2015/09/13 18:29:09 XML Unmarshal xmlB in writeService error:EOF
-2015/09/13 18:29:09 {"CommandOut" : [""]}
-2015/09/13 18:34:40 WebServer Listen on all interfaces, port 8080
-2015/09/13 18:34:40 WebSite Lunched
-2015/09/13 18:34:43 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/13 18:34:43 Write DSLAM Status
-2015/09/13 18:34:46 Update Card
-2015/09/13 18:34:59 Update Port
-2015/09/13 18:35:33 Update Service
-2015/09/13 18:36:23 Data File Updated
-2015/09/14 22:25:08 WebServer Listen on all interfaces, port 8080
-2015/09/14 22:25:08 WebSite Lunched
-2015/09/14 22:25:21 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:25:21 Write DSLAM Status
-2015/09/14 22:25:27 Update Card
-2015/09/14 22:25:40 Update Port
-2015/09/14 22:26:16 Update Service
-2015/09/14 22:26:46 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:26:46 {"CommandOut" : ["leg:isadmin># "]}
-2015/09/14 22:27:13 Data File Updated
-2015/09/14 22:27:44 WebServer Listen on all interfaces, port 8080
-2015/09/14 22:27:44 WebSite Lunched
-2015/09/14 22:27:49 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:27:49 Write DSLAM Status
-2015/09/14 22:27:52 Update Card
-2015/09/14 22:28:05 Update Port
-2015/09/14 22:28:09 XML Unmarshal xmlB in writePort error:EOF
-2015/09/14 22:28:09 {"CommandOut" : ["show xdsl operational-data line xml","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<runtime-data  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"file:cli_show_output.xsd\" display-level=\"normal\">","  <hierarchy name=\"show\" type=\"static\">","    <hierarchy name=\"xdsl\" type=\"static\">","      <hierarchy name=\"operational-data\" type=\"static\">","        <hierarchy name=\"line\" type=\"static\">","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/1</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/2</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/3</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/4</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/5</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>",""]}
-2015/09/14 22:28:09 Update Service
-2015/09/14 22:28:44 XML Unmarshal xmlB in writeService error:expected element type <runtime-data> but have <instance>
-2015/09/14 22:28:44 {"CommandOut" : ["          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/6</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/7</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/8</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/9</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/10</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/11</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/12</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/13</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/14</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/15</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/16</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/17</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/18</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/19</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/20</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/21</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/22</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/23</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/24</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/25</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/26</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/27</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/28</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/29</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/30</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/31</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/32</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/33</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/34</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/35</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/36</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/37</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/38</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/39</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/40</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/41</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/42</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/43</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/44</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/45</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/46</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/47</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","          <instance>","            <res-id name=\"if-index\" short-name=\"if-index\" type=\"Itf::XdslLineAndChannelItf::XdslLineAndChannel\">1/1/1/48</res-id>","            <info name=\"adm-state\" short-name=\"adm-state\" type=\"Itf::ifAdminStatus\">up</info>","            <info name=\"opr-state/tx-rate-ds\" short-name=\"opr-state/tx-rate-ds\" type=\"Xdsl::combinedCol\">down</info>","            <info name=\"tx-rate/us\" short-name=\"tx-rate/us\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"tx-rate/ds\" short-name=\"tx-rate/ds\" type=\"Xdsl::bitrate\">0</info>","            <info name=\"cur-op-mode\" short-name=\"cur-op-mode\" type=\"Xdsl::OneOpModeTypeLinePreDef\">default</info>","          </instance>","        </hierarchy>","      </hierarchy>","    </hierarchy>","  </hierarchy>","</runtime-data>","leg:isadmin># show xdsl oper-data-port 1/1/1/1 bridge-port xml","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<runtime-data xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"file:cli_show_output.xsd\" display-level=\"normal\">","  <hierarchy name=\"show\" type=\"static\">","    <hierarchy name=\"xdsl\" type=\"static\">","      <hierarchy name=\"oper-data-port\" type=\"static\">","        <hier-id name=\"if-index\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortXdsl::XdslShowPort\">1/1/1/1</hier-id>","        <hierarchy name=\"bridge-port\" type=\"static\">","          <instance type=\"non-volatile\">","            <res-id name=\"port\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortBridgePortXdsl::XdslShowPortBridgePort\">dsl:8:35</res-id>","            <parameter name=\"pvid\" is-default=\"no\" type=\"Vlan::StackedVlan\">10</parameter>","            <parameter name=\"default-priority\" is-default=\"no\" type=\"Vlan::Priority\">0</parameter>","            <parameter name=\"qos-profile\" is-default=\"yes\" type=\"Vlan::QosProfileName\">none</parameter>","          </instance>","          <instance type=\"non-volatile\">","            <res-id name=\"port\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortBridgePortXdsl::XdslShowPortBridgePort\">dsl:8:36</res-id>","            <parameter name=\"pvid\" is-default=\"no\" type=\"Vlan::StackedVlan\">20</parameter>","            <parameter name=\"default-priority\" is-default=\"no\" type=\"Vlan::Priority\">0</parameter>","            <parameter name=\"qos-profile\" is-default=\"yes\" type=\"Vlan::QosProfileName\">none</parameter>","          </instance>","          <instance type=\"non-volatile\">","            <res-id name=\"port\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortBridgePortXdsl::XdslShowPortBridgePort\">dsl:8:37</res-id>","            <parameter name=\"pvid\" is-default=\"no\" type=\"Vlan::StackedVlan\">30</parameter>","            <parameter name=\"default-priority\" is-default=\"no\" type=\"Vlan::Priority\">0</parameter>","            <parameter name=\"qos-profile\" is-default=\"yes\" type=\"Vlan::QosProfileName\">none</parameter>","          </instance>","        </hierarchy>","      </hierarchy>","    </hierarchy>","  </hierarchy>","</runtime-data>","leg:isadmin># "]}
-2015/09/14 22:28:59 Data File Updated
-2015/09/14 22:30:49 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:30:49 Write DSLAM Status
-2015/09/14 22:30:52 Update Card
-2015/09/14 22:31:05 Update Port
-2015/09/14 22:31:39 Update Service
-2015/09/14 22:32:10 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:32:10 {"CommandOut" : ["leg:isadmin># "]}
-2015/09/14 22:32:37 Data File Updated
-2015/09/14 22:33:29 WebServer Listen on all interfaces, port 8080
-2015/09/14 22:33:29 WebSite Lunched
-2015/09/14 22:33:33 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:33:33 Write DSLAM Status
-2015/09/14 22:33:37 Update Card
-2015/09/14 22:33:50 Update Port
-2015/09/14 22:33:51 XML Unmarshal xmlB in writePort error:EOF
-2015/09/14 22:33:51 {"CommandOut" : ["show xdsl operational-data line xml","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<runtime-data  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"file:cli_show_output.xsd\" display-level=\"normal\">","  <hierarchy name=\"show\" type=\"static\">",""]}
-2015/09/14 22:33:51 Update Service
-2015/09/14 22:33:51 Data File Updated
-2015/09/14 22:35:22 WebServer Listen on all interfaces, port 8080
-2015/09/14 22:35:22 WebSite Lunched
-2015/09/14 22:35:28 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:35:28 Write DSLAM Status
-2015/09/14 22:35:32 Update Card
-2015/09/14 22:35:45 Update Port
-2015/09/14 22:36:19 Update Service
-2015/09/14 22:37:02 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:37:02 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/36 bridge-port xml",""]}
-2015/09/14 22:37:11 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:37:11 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/42 bridge-port xml"]}
-2015/09/14 22:37:16 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:37:16 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/46 bridge-port xml"]}
-2015/09/14 22:37:19 Data File Updated
-2015/09/14 22:38:20 WebServer Listen on all interfaces, port 8080
-2015/09/14 22:38:20 WebSite Lunched
-2015/09/14 22:38:31 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:38:31 Write DSLAM Status
-2015/09/14 22:38:34 Update Card
-2015/09/14 22:38:35 XML Unmarshal xmlB in writeCard error:EOF
-2015/09/14 22:38:35 {"CommandOut" : ["","","Welcome to ISAM","last login : 14/09/15 20:35:32","leg:isadmin># show equipment slot xml","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<runtime-data  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"file:cli_show_output.xsd\" display-level=\"normal\">","  <hierarchy name=\"show\" type=\"static\">","    <hierarchy name=\"equipment\" type=\"static\">","      <hierarchy name=\"slot\" type=\"static\">","         <instance>","          <res-id name=\"slot\" short-name=\"slot\" type=\"Equipm::EqptSlotIndexEquipm::EqptSlotIndex\">nt-a</res-id>",""]}
-2015/09/14 22:38:35 Update Port
-2015/09/14 22:38:37 XML Unmarshal xmlB in writePort error:expected element type <runtime-data> but have <info>
-2015/09/14 22:38:37 {"CommandOut" : ["          <info name=\"actual-type\" short-name=\"actual-type\" type=\"Equipm::ActBoardType\">nant-a</info>","          <info name=\"oper-status\" short-name=\"enabled\" type=\"Equipm::OperStatus\">yes</info>","          <info name=\"error-status\" short-name=\"error-status\" type=\"Equipm::OperError\">no-error</info>","          <info name=\"availability\" short-name=\"availability\" type=\"Equipm::AvailStatus\">available</info>","          <info name=\"lt-restart-num\" short-name=\"restrt-cnt\" type=\"Counter\">0</info>","        </instance>","        <instance>","          <res-id name=\"slot\" short-name=\"slot\" type=\"Equipm::EqptSlotIndexEquipm::EqptSlotIndex\">nt-b</res-id>","          <info name=\"actual-type\" short-name=\"actual-type\" type=\"Equipm::ActBoardType\">empty</info>","          <info name=\"oper-status\" short-name=\"enabled\" type=\"Equipm::OperStatus\">no</info>",""]}
-2015/09/14 22:38:37 Update Service
-2015/09/14 22:38:37 Data File Updated
-2015/09/14 22:39:40 WebServer Listen on all interfaces, port 8080
-2015/09/14 22:39:40 WebSite Lunched
-2015/09/14 22:39:49 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:39:49 Write DSLAM Status
-2015/09/14 22:40:01 Update Card
-2015/09/14 22:40:14 Update Port
-2015/09/14 22:40:48 Update Service
-2015/09/14 22:41:05 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:41:05 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/8 bridge-port xml"]}
-2015/09/14 22:41:07 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:41:07 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/9 bridge-port xml"]}
-2015/09/14 22:41:27 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:41:27 {"CommandOut" : ["leg:isadmin># "]}
-2015/09/14 22:41:36 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:41:36 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/18 bridge-port xml"]}
-2015/09/14 22:42:02 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:42:02 {"CommandOut" : ["leg:isadmin># "]}
-2015/09/14 22:42:25 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:42:25 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/38 bridge-port xml"]}
-2015/09/14 22:42:26 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:42:26 {"CommandOut" : ["","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<runtime-data xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"file:cli_show_output.xsd\" display-level=\"normal\">",""]}
-2015/09/14 22:42:28 XML Unmarshal xmlB in writeService error:expected element type <runtime-data> but have <hierarchy>
-2015/09/14 22:42:28 {"CommandOut" : ["  <hierarchy name=\"show\" type=\"static\">","    <hierarchy name=\"xdsl\" type=\"static\">","      <hierarchy name=\"oper-data-port\" type=\"static\">","        <hier-id name=\"if-index\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortXdsl::XdslShowPort\">1/1/1/38</hier-id>","        <hierarchy name=\"bridge-port\" type=\"static\">","        </hierarchy>","      </hierarchy>","    </hierarchy>","  </hierarchy>","</runtime-data>","leg:isadmin># "]}
-2015/09/14 22:42:31 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:42:31 {"CommandOut" : ["leg:isadmin># "]}
-2015/09/14 22:42:39 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:42:39 {"CommandOut" : ["leg:isadmin># "]}
-2015/09/14 22:42:43 Data File Updated
-2015/09/14 22:43:24 WebServer Listen on all interfaces, port 8080
-2015/09/14 22:43:24 WebSite Lunched
-2015/09/14 22:43:53 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:43:53 Write DSLAM Status
-2015/09/14 22:44:02 Update Card
-2015/09/14 22:44:28 Update Port
-2015/09/14 22:45:37 Update Service
-2015/09/14 22:45:39 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 22:45:39 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/1 bridge-port xml","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<runtime-data xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"file:cli_show_output.xsd\" display-level=\"normal\">","  <hierarchy name=\"show\" type=\"static\">","    <hierarchy name=\"xdsl\" type=\"static\">","      <hierarchy name=\"oper-data-port\" type=\"static\">","        <hier-id name=\"if-index\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortXdsl::XdslShowPort\">1/1/1/1</hier-id>","        <hierarchy name=\"bridge-port\" type=\"static\">","          <instance type=\"non-volatile\">","            <res-id name=\"port\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortBridgePortXdsl::XdslShowPortBridgePort\">dsl:8:35</res-id>","            <parameter name=\"pvid\" is-default=\"no\" type=\"Vlan::StackedVlan\">10</parameter>",""]}
-2015/09/14 22:45:43 XML Unmarshal xmlB in writeService error:expected element type <runtime-data> but have <parameter>
-2015/09/14 22:45:43 {"CommandOut" : ["            <parameter name=\"default-priority\" is-default=\"no\" type=\"Vlan::Priority\">0</parameter>","            <parameter name=\"qos-profile\" is-default=\"yes\" type=\"Vlan::QosProfileName\">none</parameter>","          </instance>","          <instance type=\"non-volatile\">","            <res-id name=\"port\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortBridgePortXdsl::XdslShowPortBridgePort\">dsl:8:36</res-id>","            <parameter name=\"pvid\" is-default=\"no\" type=\"Vlan::StackedVlan\">20</parameter>","            <parameter name=\"default-priority\" is-default=\"no\" type=\"Vlan::Priority\">0</parameter>","            <parameter name=\"qos-profile\" is-default=\"yes\" type=\"Vlan::QosProfileName\">none</parameter>","          </instance>","          <instance type=\"non-volatile\">","            <res-id name=\"port\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortBridgePortXdsl::XdslShowPortBridgePort\">dsl:8:37</res-id>","            <parameter name=\"pvid\" is-default=\"no\" type=\"Vlan::StackedVlan\">30</parameter>","            <parameter name=\"default-priority\" is-default=\"no\" type=\"Vlan::Priority\">0</parameter>","            <parameter name=\"qos-profile\" is-default=\"yes\" type=\"Vlan::QosProfileName\">none</parameter>","          </instance>","        </hierarchy>","      </hierarchy>","    </hierarchy>","  </hierarchy>","</runtime-data>","leg:isadmin># "]}
-2015/09/14 22:47:36 Data File Updated
-2015/09/14 22:57:00 WebServer Listen on all interfaces, port 8080
-2015/09/14 22:57:00 WebSite Lunched
-2015/09/14 22:57:09 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 22:57:09 Write DSLAM Status
-2015/09/14 22:57:13 Update Card
-2015/09/14 23:01:06 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:01:06 WebSite Lunched
-2015/09/14 23:01:11 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:01:11 Write DSLAM Status
-2015/09/14 23:01:14 Update Card
-2015/09/14 23:03:09 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:03:09 WebSite Lunched
-2015/09/14 23:03:14 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:03:14 Write DSLAM Status
-2015/09/14 23:03:17 Update Card
-2015/09/14 23:04:19 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:04:19 WebSite Lunched
-2015/09/14 23:04:23 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:04:23 Write DSLAM Status
-2015/09/14 23:04:26 Update Card
-2015/09/14 23:04:39 Update Port
-2015/09/14 23:05:14 Update Service
-2015/09/14 23:06:05 Data File Updated
-2015/09/14 23:07:14 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:07:14 WebSite Lunched
-2015/09/14 23:07:18 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:07:18 Write DSLAM Status
-2015/09/14 23:07:22 Update Card
-2015/09/14 23:09:13 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:09:13 WebSite Lunched
-2015/09/14 23:09:18 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:09:18 Write DSLAM Status
-2015/09/14 23:09:26 Update Card
-2015/09/14 23:11:11 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:11:11 WebSite Lunched
-2015/09/14 23:11:16 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:11:16 Write DSLAM Status
-2015/09/14 23:11:19 Update Card
-2015/09/14 23:11:58 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:11:58 WebSite Lunched
-2015/09/14 23:12:03 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:12:03 Write DSLAM Status
-2015/09/14 23:12:06 Update Card
-2015/09/14 23:13:38 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:13:38 WebSite Lunched
-2015/09/14 23:13:44 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:13:44 Write DSLAM Status
-2015/09/14 23:13:50 Update Card
-2015/09/14 23:14:35 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:14:35 WebSite Lunched
-2015/09/14 23:14:42 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:14:42 Write DSLAM Status
-2015/09/14 23:14:48 Update Card
-2015/09/14 23:29:41 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:29:41 WebSite Lunched
-2015/09/14 23:29:46 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:29:46 Write DSLAM Status
-2015/09/14 23:29:49 Update Card
-2015/09/14 23:29:50 XML Unmarshal xmlB in writeCard error:EOF
-2015/09/14 23:29:50 {"CommandOut" : ["","","Welcome to ISAM","last login : 14/09/15 21:14:48","leg:isadmin># "]}
-2015/09/14 23:29:50 Update Port
-2015/09/14 23:30:37 Update Service
-2015/09/14 23:30:37 Data File Updated
-2015/09/14 23:31:14 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:31:14 WebSite Lunched
-2015/09/14 23:31:18 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:31:18 Write DSLAM Status
-2015/09/14 23:31:21 Update Card
-2015/09/14 23:31:21 XML Unmarshal xmlB in writeCard error:EOF
-2015/09/14 23:31:21 {"CommandOut" : ["","","Welcome to ISAM","last login : 14/09/15 21:29:49","leg:isadmin># "]}
-2015/09/14 23:31:21 Update Port
-2015/09/14 23:31:45 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:31:45 WebSite Lunched
-2015/09/14 23:31:49 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:31:49 Write DSLAM Status
-2015/09/14 23:31:52 Update Card
-2015/09/14 23:31:52 XML Unmarshal xmlB in writeCard error:EOF
-2015/09/14 23:31:52 {"CommandOut" : ["","","Welcome to ISAM","last login : 14/09/15 21:31:21","leg:isadmin># "]}
-2015/09/14 23:31:52 Update Port
-2015/09/14 23:32:39 Update Service
-2015/09/14 23:32:39 Data File Updated
-2015/09/14 23:33:44 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:33:44 WebSite Lunched
-2015/09/14 23:33:48 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:33:48 Write DSLAM Status
-2015/09/14 23:33:51 Update Card
-2015/09/14 23:41:43 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:41:43 WebSite Lunched
-2015/09/14 23:41:48 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:41:48 Write DSLAM Status
-2015/09/14 23:42:22 Update Card
-2015/09/14 23:49:09 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:49:09 WebSite Lunched
-2015/09/14 23:49:14 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:49:14 Write DSLAM Status
-2015/09/14 23:49:16 Update Card
-2015/09/14 23:52:30 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:52:30 WebSite Lunched
-2015/09/14 23:52:34 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:52:34 Write DSLAM Status
-2015/09/14 23:52:39 Update Card
-2015/09/14 23:56:47 WebServer Listen on all interfaces, port 8080
-2015/09/14 23:56:47 WebSite Lunched
-2015/09/14 23:56:52 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/14 23:56:52 Write DSLAM Status
-2015/09/14 23:56:58 Update Card
-2015/09/14 23:57:11 Update Port
-2015/09/14 23:57:45 Update Service
-2015/09/14 23:58:06 XML Unmarshal xmlB in writeService error:EOF
-2015/09/14 23:58:06 {"CommandOut" : ["show xdsl oper-data-port 1/1/1/18 bridge-port xml","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<runtime-data xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"file:cli_show_output.xsd\" display-level=\"normal\">","  <hierarchy name=\"show\" type=\"static\">","    <hierarchy name=\"xdsl\" type=\"static\">",""]}
-2015/09/14 23:58:08 XML Unmarshal xmlB in writeService error:expected element type <runtime-data> but have <hierarchy>
-2015/09/14 23:58:08 {"CommandOut" : ["      <hierarchy name=\"oper-data-port\" type=\"static\">","        <hier-id name=\"if-index\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortXdsl::XdslShowPort\">1/1/1/18</hier-id>","        <hierarchy name=\"bridge-port\" type=\"static\">","        </hierarchy>","      </hierarchy>","    </hierarchy>","  </hierarchy>","</runtime-data>","leg:isadmin># show xdsl oper-data-port 1/1/1/19 bridge-port xml","<?xml version=\"1.0\" encoding=\"UTF-8\"?>","<runtime-data xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"file:cli_show_output.xsd\" display-level=\"normal\">","  <hierarchy name=\"show\" type=\"static\">","    <hierarchy name=\"xdsl\" type=\"static\">","      <hierarchy name=\"oper-data-port\" type=\"static\">","        <hier-id name=\"if-index\" is-named=\"no\" is-default=\"no\" type=\"Xdsl::XdslShowPortXdsl::XdslShowPort\">1/1/1/19</hier-id>","        <hierarchy name=\"bridge-port\" type=\"static\">","        </hierarchy>","      </hierarchy>","    </hierarchy>","  </hierarchy>","</runtime-data>","leg:isadmin># "]}
-2015/09/14 23:58:37 Data File Updated
-2015/09/15 08:59:02 WebServer Listen on all interfaces, port 8080
-2015/09/15 08:59:02 WebSite Lunched
-2015/09/15 08:59:06 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
-2015/09/15 08:59:06 Write DSLAM Status
-2015/09/15 08:59:09 Update Card
-2015/09/15 08:59:23 Update Port
-2015/09/15 08:59:57 Update Service
-2015/09/15 09:00:47 Data File Updated
+2016/02/08 17:22:29 WebServer Listen on all interfaces, port 8080
+2016/02/08 17:22:29 WebSite Lunched
+2016/02/08 17:22:34 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
+2016/02/08 17:22:34 Write DSLAM Status
+2016/02/08 17:22:37 Update Card
+2016/02/08 17:22:50 Update Port
+2016/02/08 17:23:24 Update Service
+2016/02/08 17:24:14 Data File Updated
+2016/02/08 17:26:42 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
+2016/02/08 17:26:42 Write DSLAM Status
+2016/02/08 17:26:45 Update Card
+2016/02/08 17:26:58 Update Port
+2016/02/08 17:27:32 Update Service
+2016/02/08 17:28:21 Data File Updated
+2016/02/08 17:28:23 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
+2016/02/08 17:28:23 Write DSLAM Status
+2016/02/08 17:28:26 Update Card
+2016/02/08 17:32:13 WebServer Listen on all interfaces, port 8080
+2016/02/08 17:32:13 WebSite Lunched
+2016/02/08 17:32:18 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
+2016/02/08 17:32:18 Write DSLAM Status
+2016/02/08 17:32:20 Update Card
+2016/02/08 17:32:33 Update Port
+2016/02/08 17:33:07 Update Service
+2016/02/08 17:33:57 Data File Updated
+2016/02/08 17:45:28 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
+2016/02/08 17:45:28 Write DSLAM Status
+2016/02/08 17:45:31 Update Card
+2016/02/08 17:45:44 Update Port
+2016/02/08 17:46:18 Update Service
+2016/02/08 17:47:07 Data File Updated
+2016/02/08 17:48:57 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
+2016/02/08 17:48:57 Write DSLAM Status
+2016/02/08 17:49:00 Update Card
+2016/02/08 17:49:13 Update Port
+2016/02/08 17:49:47 Update Service
+2016/02/08 17:50:37 Data File Updated
+2016/02/08 17:51:36 WebServer Listen on all interfaces, port 8080
+2016/02/08 17:51:36 WebSite Lunched
+2016/02/08 17:51:44 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
+2016/02/08 17:51:44 Write DSLAM Status
+2016/02/08 17:51:47 Update Card
+2016/02/08 17:52:00 Update Port
+2016/02/08 17:53:11 WebServer Listen on all interfaces, port 8080
+2016/02/08 17:53:11 WebSite Lunched
+2016/02/08 17:53:16 Update DSLAM 2327a547-965c-437d-830d-163a9310e93b
+2016/02/08 17:53:16 Write DSLAM Status
+2016/02/08 17:53:20 Update Card
+2016/02/08 17:53:33 Update Port
+2016/02/08 17:54:07 Update Service
+2016/02/08 17:54:56 Data File Updated

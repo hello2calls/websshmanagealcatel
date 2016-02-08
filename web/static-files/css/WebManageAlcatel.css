@@ -34,11 +34,16 @@ h4 {
   color: #6C7A89;
 }
 
+.pure-button {
+  box-sizing: border-box;
+}
+
 .button-secondary {
   color: white;
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   background: #34A7C1;
+  letter-spacing: 0em;
 }
 
 /*
@@ -68,10 +73,7 @@ h4 {
 .content {
   padding-bottom: 0px !important;
   padding-top: 0px !important;
-  height: 81%;
-  height: -moz-calc(100% - 50px); /* Firefox */
-  height: -webkit-calc(100% - 50px); /* Chrome, Safari */
-  height: calc(100% - 50px); /* IE9+ and future browsers */
+  margin-bottom: 31px;
 }
 
 .list {
@@ -115,7 +117,7 @@ h4 {
     color: #FCFCFC !important;
     text-align: center;
     height: 15px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     padding-left: 0px;
@@ -159,6 +161,21 @@ h4 {
 }
 
 
+/*
+ * -- Under Small --
+ */
+@media (max-width: 568px) {
+
+  .footer p {
+    font-size: 80%;
+  }
+
+  .content {
+    margin-left: 10%;
+  }
+
+}
+
 
 /*
  * -- Small --
@@ -166,7 +183,11 @@ h4 {
 @media (min-width: 568px) {
 
   .loader {
-    left: 75%
+    left: 75%;
+  }
+
+  .footer p {
+    font-size: 100%;
   }
 
 }

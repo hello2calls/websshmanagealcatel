@@ -2,6 +2,7 @@ package siteapi
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/url"
 	"regexp"
@@ -49,14 +50,18 @@ func Update(w http.ResponseWriter, r *http.Request, dataFile S.Data) {
 			session.Values[dslamID] = sshsession.Get(dataFile, dataFile.DSLAM[i].ID)
 			session.Save(r, w)
 		} else {
-			if command.GetOut(session.Values[dslamID].(string), "show session")[0] == "" || command.GetOut(session.Values[dslamID].(string), "show session")[0] == "Session ID not exist" {
+			commandReturn := command.GetOut(session.Values[dslamID].(string), "show session")[0]
+			if commandReturn == "" || commandReturn == "Session ID not exist" {
 				session.Values[dslamID] = sshsession.Get(dataFile, dataFile.DSLAM[i].ID)
 				session.Save(r, w)
+				fmt.Println("session Save")
 			}
 		}
 		logger.Print("Update DSLAM "+dslamID, nil)
+		// Write DSLAM Status
 		WD.WriteStatus(dataFile, dslamID)
 		if dataFile.DSLAM[i].Status == "OK" {
+			// If DSLAM is UP e lunch Update
 			WD.WriteCard(dataFile, session.Values[dslamID].(string), dslamID)
 		}
 	}

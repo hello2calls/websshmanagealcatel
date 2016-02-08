@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/skratchdot/open-golang/open"
+
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web"
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/pkg/logger"
 	"bitbucket.org/nmontes/sshapi/api"
-	"github.com/skratchdot/open-golang/open"
 )
 
 func main() {
