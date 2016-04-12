@@ -42,7 +42,7 @@ func init() {
 	// register embeddedBox
 	embedded.RegisterEmbeddedBox(`static-files/fonts`, &embedded.EmbeddedBox{
 		Name: `static-files/fonts`,
-		Time: time.Unix(1449770512, 0),
+		Time: time.Unix(1454952762, 0),
 		Dirs: map[string]*embedded.EmbeddedDir{
 			"": dirf,
 		},

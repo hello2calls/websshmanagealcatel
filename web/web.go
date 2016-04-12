@@ -107,7 +107,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			siteapi.DeleteSession(w, r)
 		}
 
-	// Static Files
+	// Serve Static Files
 	case "/css/pure-min.css":
 		response, _ := cssBox.String("pure-min.css")
 		w.Header().Set("Content-Type", "text/css")
