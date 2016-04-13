@@ -1,7 +1,19 @@
 // Global Variables
 var data;
+var ws = new WebSocket("ws://localhost:8080/ws");
+ws.onopen = function()
+	{
+		ws.send("Connection init");
+	};
 
 window.onload = function() {
+	ws.send("Send message with JS");
+	ws.onmessage = function (evt) 
+		{ 
+			var received_msg = evt.data;
+			alert(received_msg);
+			ws.send("Send when receive message");
+		};
 	if (window.location.pathname == "/index" || window.location.pathname == "/") {
 		// Update JSON Data File on Server
 		xmlhttp2 = new XMLHttpRequest();

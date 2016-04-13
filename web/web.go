@@ -6,6 +6,7 @@ import (
 	"text/template"
 
 	"github.com/GeertJohan/go.rice"
+	"github.com/gorilla/websocket"
 
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/controllers/dslam"
 	"bitbucket.org/nmontes/WebSSHManageAlcatel/web/controllers/option"
@@ -29,6 +30,13 @@ func Run() {
 
 // indexHandler define WebServer
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+
+	// Used for WebSocket
+	var upgrader = websocket.Upgrader{
+		ReadBufferSize:  1024,
+		WriteBufferSize: 1024,
+		CheckOrigin:     func(r *http.Request) bool { return true },
+	}
 
 	// Define Folders
 	var templateBox, _ = rice.FindBox("templates")
@@ -105,6 +113,26 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		// GET DSLAM Informations when we are in option page
 		case "DELETE":
 			siteapi.DeleteSession(w, r)
+		}
+
+	// WebSocket
+	case "/ws":
+		conn, err := upgrader.Upgrade(w, r, nil)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		for {
+			messageType, p, err := conn.ReadMessage()
+			if err != nil {
+				return
+			}
+			fmt.Println(string(p))
+			err = conn.WriteMessage(messageType, []byte("test"))
+			if err != nil {
+				return
+			}
+			fmt.Println(": Message sent")
 		}
 
 	// Serve Static Files
