@@ -2,7 +2,9 @@ package web
 
 import (
 	"fmt"
+	"net"
 	"net/http"
+	"net/url"
 	"text/template"
 
 	"github.com/GeertJohan/go.rice"
@@ -128,11 +130,44 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			fmt.Println(string(p))
-			err = conn.WriteMessage(messageType, []byte("test"))
+
+			err = conn.WriteMessage(messageType, []byte("Send from webserver to JS"))
+			if err != nil {
+				fmt.Println("ERROR Write message from webserver to JS")
+				return
+			}
+			fmt.Println("webserver : Message sent to JS")
+		}
+	case "/APISSHWS":
+		wsURL := "ws://localhost:8080/API/ws"
+		u, err := url.Parse(wsURL)
+		if err != nil {
+			fmt.Println(err)
+		}
+		rawConn, err := net.Dial("tcp", u.Host)
+		if err != nil {
+			fmt.Println(err)
+		}
+		wsHeaders := http.Header{
+			"Origin": {wsURL},
+		}
+		wsConn, _, err := websocket.NewClient(rawConn, u, wsHeaders, 1024, 1024)
+		if err != nil {
+			fmt.Println("ERROR wsConn")
+			fmt.Println(err)
+		}
+		err = wsConn.WriteMessage(websocket.TextMessage, []byte("Send from webserver to SSH API"))
+		if err != nil {
+			fmt.Println("ERROR Write message from webserver to SSH API ")
+			return
+		}
+		fmt.Println("webserver : Message sent to SSH API")
+		for {
+			_, p, err := wsConn.ReadMessage()
 			if err != nil {
 				return
 			}
-			fmt.Println(": Message sent")
+			fmt.Println(string(p))
 		}
 
 	// Serve Static Files

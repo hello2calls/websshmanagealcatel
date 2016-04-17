@@ -7,12 +7,11 @@ ws.onopen = function()
 	};
 
 window.onload = function() {
-	ws.send("Send message with JS");
+	ws.send("Send message from JS to WebServer");
 	ws.onmessage = function (evt) 
 		{ 
 			var received_msg = evt.data;
 			alert(received_msg);
-			ws.send("Send when receive message");
 		};
 	if (window.location.pathname == "/index" || window.location.pathname == "/") {
 		// Update JSON Data File on Server
